@@ -12,14 +12,64 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body class="container-fluid">
-      <h1>Example</h1>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-      ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.</p>
-    </body>
+    <div class="login-status">
+      <div class="logged-out">
+        <div class="signInError"></div>
+        <form id="sign-in">
+          <fieldset>
+            <input class='text-field' type='text' placeholder='Email' name='credentials[email]'>
+            <input class='text-field' type='password' placeholder='Password' name='credentials[password]'>
+            <input type="submit" class="btn btn-primary btn-lg" name="submit" value="Sign in!">
+          </fieldset>
+        </form>
+        <p>Don't have an account?</p>
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#signUpModal">
+      Sign Up!
+      </button>
+    </div>
+
+    <div class="logged-in">
+      <div class="greeting"></div>
+      <form id="sign-out">
+        <fieldset>
+          <input type="submit" class="btn btn-primary btn-lg" name="submit" value="Sign Out">
+          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#changePwModal">Change Password</button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+
+            <form id="sign-up">
+              <fieldset>
+                <input class='pop-up-fields text-field' type='text' placeholder='Email' name='credentials[email]'> <br> <br>
+                <input class='pop-up-fields text-field' type='password' placeholder='Password' name='credentials[password]'><br> <br>
+                <input class='pop-up-fields text-field' type='password' placeholder='Re-enter Password' name='credentials[password_confirmation]'><br><br>
+                <input type="submit" name="submit" value="Sign up!">
+              </fieldset><br>
+              <div class="signUpError"></div>
+            </form>
+
+            <form id="change-pw">
+              <fieldset>
+                <input class='pop-up-fields text-field' type='password' placeholder='Current Password' name='passwords[old]'> <br> <br>
+                <input class='pop-up-fields text-field' type='password' placeholder='New Password' name='passwords[new]'><br> <br>
+                <input type="submit" name="submit" value="Change Password">
+              </fieldset><br>
+              <div class="changePwError"></div>
+            </form>
+
+    <div class='main-wrapper'>
+      <h1>Project 2</h1>
+    </div>
+
+    <form id="index">
+      <fieldset>
+        <input type="submit" name="submit" value="Show Games">
+      </fieldset><br>
+      <div class="signUpError"></div>
+    </form>
+
+    <div class="page-bottom">Created By Brad Leyden</div>
+  </body>
 </html>
