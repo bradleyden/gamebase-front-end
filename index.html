@@ -63,12 +63,62 @@
       <h1>Project 2</h1>
     </div>
 
-    <form id="index">
+    <form id="index-games">
       <fieldset>
         <input type="submit" name="submit" value="Show Games">
       </fieldset><br>
       <div class="signUpError"></div>
     </form>
+
+    <form id="show-game">
+      <fieldset>
+        <input class='pop-up-fields text-field' type='text' placeholder='ID' name='game[id]'> <br> <br>
+        <input type="submit" name="submit" value="Search Games">
+      </fieldset><br>
+      <div class="signUpError"></div>
+    </form>
+
+    <form id="create-game">
+      <fieldset>
+        <input class='pop-up-fields text-field' type='text' placeholder='Title' name='game[title]'> <br> <br>
+        <select name='game[platform]'>
+          <option value="PC">PC</option>
+          <option value="Playstation 4">Playstation 4</option>
+          <option value="Xbox One">Xbox One</option>
+          <option value="Nintendo Switch">Nintendo Switch</option>
+        </select><br><br>
+        <input class='pop-up-fields text-field' type='text' placeholder='Genre' name='game[genre]'> <br> <br>
+        <input class='pop-up-fields text-field' type='date' placeholder='Release Date' name='game[release]'> <br> <br>
+        <input class='pop-up-fields text-field' type='text' placeholder='Developer' name='game[developer]'> <br> <br>
+        <input class='pop-up-fields text-field' type='text' placeholder='Publisher' name='game[publisher]'> <br> <br>
+        <input class='pop-up-fields text-field' type='text' placeholder='Playtime' name='game[playtime]'> <br> <br>
+        <input type="submit" name="submit" value="Add Game">
+      </fieldset><br>
+      <div class="signUpError"></div>
+    </form>
+
+    <form id="update-game">
+      <fieldset>
+        <input class='pop-up-fields text-field' type='text' placeholder='ID' name='game[id]'> <br> <br>
+        <input class='pop-up-fields text-field' type='text' placeholder='Title' name='game[title]'> <br> <br>
+        <select name='game[platform]'>
+          <option value="PC">PC</option>
+          <option value="Playstation 4">Playstation 4</option>
+          <option value="Xbox One">Xbox One</option>
+          <option value="Nintendo Switch">Nintendo Switch</option>
+        </select><br><br>
+        <input class='pop-up-fields text-field' type='text' placeholder='Genre' name='game[genre]'> <br> <br>
+        <input class='pop-up-fields text-field' type='date' placeholder='Release Date' name='game[release]'> <br> <br>
+        <input class='pop-up-fields text-field' type='text' placeholder='Developer' name='game[developer]'> <br> <br>
+        <input class='pop-up-fields text-field' type='text' placeholder='Publisher' name='game[publisher]'> <br> <br>
+        <input class='pop-up-fields text-field' type='text' placeholder='Playtime' name='game[playtime]'> <br> <br>
+        <input type="submit" name="submit" value="Update Game">
+      </fieldset><br>
+      <div class="signUpError"></div>
+    </form>
+
+    <div class="content">
+    </div>
 
     <div class="page-bottom">Created By Brad Leyden</div>
   </body>

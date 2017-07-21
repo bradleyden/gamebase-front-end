@@ -1,6 +1,7 @@
 'use strict'
 
 const store = require('./store')
+const showGamesTemplate = require('./templates/game-listing.handlebars')
 
 const signUpSuccess = (data) => {
   $('#signUpModal').modal('hide')
@@ -49,9 +50,7 @@ const signOutFailure = (eror) => {
 }
 
 const createGameSuccess = (data) => {
-}
-
-const getCurrentGame = function () {
+  console.log('Success!')
 }
 
 const createGameFailure = () => {
@@ -59,15 +58,30 @@ const createGameFailure = () => {
 
 const loadGamesSuccess = (data) => {
   console.log(data)
+  const showGamesHtml = showGamesTemplate({ games: data.games })
+  $('.content').html(showGamesHtml)
 }
 
 const loadGamesFailure = () => {
+}
+
+const loadGameSuccess = (data) => {
+  console.log(data)
+}
+
+const loadGameFailure = () => {
 }
 
 const updateGameSuccess = (data) => {
 }
 
 const updateGameFailure = () => {
+}
+
+const deleteGameSuccess = (data) => {
+}
+
+const deleteGameFailure = () => {
 }
 
 module.exports = {
@@ -85,5 +99,8 @@ module.exports = {
   loadGamesFailure,
   updateGameSuccess,
   updateGameFailure,
-  getCurrentGame
+  loadGameSuccess,
+  loadGameFailure,
+  deleteGameSuccess,
+  deleteGameFailure
 }

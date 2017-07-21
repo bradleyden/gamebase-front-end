@@ -1,0 +1,49 @@
+{{#each games as |game|}}
+
+  <h1 data-id="{{game.id}}"> <small>Title: {{game.title}}</small></h1>
+  <div>
+    {{#if game.genre}}
+      {{game.genre}}
+    {{else}}
+      No genre.
+    {{/if}}<br>
+
+    {{#if game.platform}}
+      {{game.platform}}
+    {{else}}
+      No platform.
+    {{/if}}<br>
+
+    {{#if game.release}}
+      {{game.release}}
+    {{else}}
+      No release.
+    {{/if}}<br>
+
+    {{#if game.developer}}
+      {{game.developer}}
+    {{else}}
+      No developer.
+    {{/if}}<br>
+
+    {{#if game.publisher}}
+      {{game.publisher}}
+    {{else}}
+      No publisher.
+    {{/if}}<br>
+
+    {{#if game.playtime}}
+      {{game.playtime}} hours played
+    {{else}}
+      No playtime.
+    {{/if}}<br>
+
+    <form class="delete-game">
+      <fieldset>
+        <input class='pop-up-fields text-field' type='hidden' value={{game.id}} name='game[id]'> <br> <br>
+        <input type="submit" name="submit" value="Delete Game">
+      </fieldset><br>
+    </form>
+  </div>
+
+{{/each}}
