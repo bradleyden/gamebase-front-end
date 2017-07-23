@@ -42,6 +42,13 @@ const onShowGames = function (event) {
      .then(ui.loadGamesSuccess)
      .catch(ui.loadGamesFailure)
   $(document).on('submit', '.delete-game', onDeleteGame)
+  $(document).on('submit', '.add-playthrough', onCreatePlaythrough)
+  $(document).on('submit', '.show-playthroughs', onShowPlaythroughs)
+  $(document).on('click', '.update-button', onClickUpdate)
+}
+
+const onClickUpdate = function () {
+  $('#update-id').val($(event.target).data('id'))
 }
 
 const onShowGame = function (event) {
@@ -51,6 +58,14 @@ const onShowGame = function (event) {
      .catch(ui.loadGameFailure)
 }
 
+const onShowPlaythroughs = function (event) {
+  document.getElementsByClassName('playthrough-content')[0].id = $(event.target).data('id')
+  event.preventDefault()
+  api.getPlaythroughs()
+     .then(ui.showPlaythroughsSuccess)
+     .catch(ui.showPlaythroughsFailure)
+}
+
 const onCreateGame = function (event) {
   const data = getFormFields(this)
   console.log(data)
@@ -58,6 +73,15 @@ const onCreateGame = function (event) {
   api.createGame(data)
      .then(ui.createGameSuccess)
      .catch(ui.createGameFailure)
+}
+
+const onCreatePlaythrough = function (event) {
+  const data = getFormFields(this)
+  console.log(data)
+  event.preventDefault()
+  api.createPlaythrough(data)
+     .then(ui.createPlaythroughSuccess)
+     .catch(ui.createPlaythroughFailure)
 }
 
 const onUpdateGame = function (event) {
@@ -80,6 +104,11 @@ const onDeleteGame = function (event) {
         .then(ui.loadGamesSuccess)
         .catch(ui.loadGamesFailure)
 }
+
+$(() => {
+  $('#library').hide()
+  $('.logged-in').hide()
+})
 
 const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp)

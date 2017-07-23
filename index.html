@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Example</title>
+      <title>GameBase</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <!-- Do not add `link` tags unless you know what you are doing -->
       <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-
+      <link href="https://fonts.googleapis.com/css?family=Electrolize" rel="stylesheet">
+      <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet">
       <!-- Do not add `script` tags unless you know what you are doing -->
+      <script src="https://use.fontawesome.com/b9279fc81b.js"></script>
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body class="container-fluid">
 
@@ -38,87 +41,178 @@
         </fieldset>
       </form>
     </div>
+
+    <div class='main-wrapper'>
+      <h1>GameBase</h1>
+    </div>
   </div>
 
-            <form id="sign-up">
+  <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Sign Up!</h4>
+      </div>
+      <div class="modal-body">
+        <form id="sign-up">
+          <fieldset>
+            <input class='pop-up-fields text-field' type='text' placeholder='Email' name='credentials[email]'> <br> <br>
+            <input class='pop-up-fields text-field' type='password' placeholder='Password' name='credentials[password]'><br> <br>
+            <input class='pop-up-fields text-field' type='password' placeholder='Re-enter Password' name='credentials[password_confirmation]'><br><br>
+            <input type="submit" name="submit" value="Sign up!">
+          </fieldset><br>
+          <div class="signUpError"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="changePwModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Change Password</h4>
+      </div>
+      <div class="modal-body">
+        <form id="change-pw">
+          <fieldset>
+            <input class='pop-up-fields text-field' type='password' placeholder='Current Password' name='passwords[old]'> <br> <br>
+            <input class='pop-up-fields text-field' type='password' placeholder='New Password' name='passwords[new]'><br> <br>
+            <input type="submit" name="submit" value="Change Password">
+          </fieldset><br>
+          <div class="changePwError"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <br>
+    <div class="logged-in">
+    <form id="index-games">
+      <fieldset>
+        <input type="submit" name="submit" value="View Library">
+      </fieldset><br>
+      <div class="showLibraryError"></div>
+    </form>
+
+    <table id="library"
+         class="table"
+         data-toggle="table"
+         data-sort-name="title"
+         data-sort-order="desc">
+      <thead>
+      <tr>
+          <th data-field="title"
+              data-sortable="true">
+                  Title
+          </th>
+          <th data-field="genre"
+              data-sortable="true">
+                  Genre
+          </th>
+          <th data-field="platform"
+              data-sortable="true">
+                  Platform
+          </th>
+          <th data-field="release"
+              data-sortable="true">
+                  Release Date
+          </th>
+          <th data-field="developer"
+              data-sortable="true">
+                  Developer
+          </th>
+          <th data-field="publisher"
+              data-sortable="true">
+                  Publisher
+          </th>
+          <th data-field="playtime"
+              data-sortable="true">
+                  Playtime
+          </th>
+          <th data-field="edit-delete"
+              data-sortable="false">
+                  Edit/Delete
+          </th>
+      </tr>
+      </thead>
+      <tbody>
+      </tbody>
+  </table>
+
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addGameModal">
+    <i class="fa fa-plus-square" aria-hidden="true"></i>
+</button>
+
+  <div class="modal fade" id="addGameModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Add Game To Library</h4>
+        </div>
+        <div class="modal-body">
+          <form id="create-game">
+            <fieldset>
+              <input class='pop-up-fields text-field' type='text' placeholder='Title' name='game[title]'> <br> <br>
+              <select name='game[platform]'>
+                <option value="PC">PC</option>
+                <option value="Playstation 4">Playstation 4</option>
+                <option value="Xbox One">Xbox One</option>
+                <option value="Nintendo Switch">Nintendo Switch</option>
+              </select><br><br>
+              <input class='pop-up-fields text-field' type='text' placeholder='Genre' name='game[genre]'> <br> <br>
+              <input class='pop-up-fields text-field' type='date' placeholder='Release Date' name='game[release]'> <br> <br>
+              <input class='pop-up-fields text-field' type='text' placeholder='Developer' name='game[developer]'> <br> <br>
+              <input class='pop-up-fields text-field' type='text' placeholder='Publisher' name='game[publisher]'> <br> <br>
+              <input class='pop-up-fields text-field' type='number' placeholder='Playtime' name='game[playtime]'> <br> <br>
+              <input type="submit" name="submit" value="Add Game">
+            </fieldset><br>
+            <div class="signUpError"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="modal fade update-modal" id="updateGameModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Edit Game Info</h4>
+          </div>
+          <div class="modal-body">
+            <form id="update-game">
               <fieldset>
-                <input class='pop-up-fields text-field' type='text' placeholder='Email' name='credentials[email]'> <br> <br>
-                <input class='pop-up-fields text-field' type='password' placeholder='Password' name='credentials[password]'><br> <br>
-                <input class='pop-up-fields text-field' type='password' placeholder='Re-enter Password' name='credentials[password_confirmation]'><br><br>
-                <input type="submit" name="submit" value="Sign up!">
+                <input id="update-id" class='pop-up-fields text-field' type='hidden' name='game[id]'>
+                <input class='pop-up-fields text-field' type='text' placeholder='Title' name='game[title]'> <br> <br>
+                <select name='game[platform]'>
+                  <option value="PC">PC</option>
+                  <option value="Playstation 4">Playstation 4</option>
+                  <option value="Xbox One">Xbox One</option>
+                  <option value="Nintendo Switch">Nintendo Switch</option>
+                </select><br><br>
+                <input class='pop-up-fields text-field' type='text' placeholder='Genre' name='game[genre]'> <br> <br>
+                <input class='pop-up-fields text-field' type='date' placeholder='Release Date' name='game[release]'> <br> <br>
+                <input class='pop-up-fields text-field' type='text' placeholder='Developer' name='game[developer]'> <br> <br>
+                <input class='pop-up-fields text-field' type='text' placeholder='Publisher' name='game[publisher]'> <br> <br>
+                <input class='pop-up-fields text-field' type='number' placeholder='Playtime' name='game[playtime]'> <br> <br>
+                <input type="submit" name="submit" value="Update Game">
               </fieldset><br>
               <div class="signUpError"></div>
             </form>
-
-            <form id="change-pw">
-              <fieldset>
-                <input class='pop-up-fields text-field' type='password' placeholder='Current Password' name='passwords[old]'> <br> <br>
-                <input class='pop-up-fields text-field' type='password' placeholder='New Password' name='passwords[new]'><br> <br>
-                <input type="submit" name="submit" value="Change Password">
-              </fieldset><br>
-              <div class="changePwError"></div>
-            </form>
-
-    <div class='main-wrapper'>
-      <h1>Project 2</h1>
+          </div>
+        </div>
+      </div>
+    </div>
     </div>
 
-    <form id="index-games">
-      <fieldset>
-        <input type="submit" name="submit" value="Show Games">
-      </fieldset><br>
-      <div class="signUpError"></div>
-    </form>
-
-    <form id="show-game">
-      <fieldset>
-        <input class='pop-up-fields text-field' type='text' placeholder='ID' name='game[id]'> <br> <br>
-        <input type="submit" name="submit" value="Search Games">
-      </fieldset><br>
-      <div class="signUpError"></div>
-    </form>
-
-    <form id="create-game">
-      <fieldset>
-        <input class='pop-up-fields text-field' type='text' placeholder='Title' name='game[title]'> <br> <br>
-        <select name='game[platform]'>
-          <option value="PC">PC</option>
-          <option value="Playstation 4">Playstation 4</option>
-          <option value="Xbox One">Xbox One</option>
-          <option value="Nintendo Switch">Nintendo Switch</option>
-        </select><br><br>
-        <input class='pop-up-fields text-field' type='text' placeholder='Genre' name='game[genre]'> <br> <br>
-        <input class='pop-up-fields text-field' type='date' placeholder='Release Date' name='game[release]'> <br> <br>
-        <input class='pop-up-fields text-field' type='text' placeholder='Developer' name='game[developer]'> <br> <br>
-        <input class='pop-up-fields text-field' type='text' placeholder='Publisher' name='game[publisher]'> <br> <br>
-        <input class='pop-up-fields text-field' type='text' placeholder='Playtime' name='game[playtime]'> <br> <br>
-        <input type="submit" name="submit" value="Add Game">
-      </fieldset><br>
-      <div class="signUpError"></div>
-    </form>
-
-    <form id="update-game">
-      <fieldset>
-        <input class='pop-up-fields text-field' type='text' placeholder='ID' name='game[id]'> <br> <br>
-        <input class='pop-up-fields text-field' type='text' placeholder='Title' name='game[title]'> <br> <br>
-        <select name='game[platform]'>
-          <option value="PC">PC</option>
-          <option value="Playstation 4">Playstation 4</option>
-          <option value="Xbox One">Xbox One</option>
-          <option value="Nintendo Switch">Nintendo Switch</option>
-        </select><br><br>
-        <input class='pop-up-fields text-field' type='text' placeholder='Genre' name='game[genre]'> <br> <br>
-        <input class='pop-up-fields text-field' type='date' placeholder='Release Date' name='game[release]'> <br> <br>
-        <input class='pop-up-fields text-field' type='text' placeholder='Developer' name='game[developer]'> <br> <br>
-        <input class='pop-up-fields text-field' type='text' placeholder='Publisher' name='game[publisher]'> <br> <br>
-        <input class='pop-up-fields text-field' type='text' placeholder='Playtime' name='game[playtime]'> <br> <br>
-        <input type="submit" name="submit" value="Update Game">
-      </fieldset><br>
-      <div class="signUpError"></div>
-    </form>
-
-    <div class="content">
-    </div>
+    <div class="playthrough-content"></div>
 
     <div class="page-bottom">Created By Brad Leyden</div>
   </body>

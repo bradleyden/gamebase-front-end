@@ -1,2 +1,121 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
+
+.box {
+  padding: 4px;
+  border: 2px solid #216778;
+}
+
+.box:hover {
+  background: #97b0b6;
+}
+
+body {
+  width: auto;
+  background-color: #f9f9f9;
+}
+
+.main-wrapper {
+  font-family: 'Asap';
+  color: black;
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 15px auto;
+  max-width: 650px;
+  padding: -20px 10px 100px 10px;
+  text-align: center;
+}
+
+h1 {
+  color: #CDE25F;
+  font-family: 'Electrolize';
+  font-size: 72px;
+}
+
+.display {
+  color: #216778;
+  font-size: 24px;
+  text-align: left;
+}
+
+.login-status {
+  background-color: #3D3B4C;
+  border-radius: 15px 15px 0 0;
+  padding: 20px;
+}
+
+.btn {
+  font-family: 'Asap';
+  background-color: #CCDBDC;
+  border-radius: 10px;
+  color: #454851;
+  font-size: 14px;
+  margin: 3px 0;
+  padding: 5px 9px;
+}
+
+.greeting,
+.signInError,
+.signUpError,
+.changePwError {
+  font-size: 16px;
+  color: #216778;
+  font-weight: 800;
+}
+
+.page-bottom {
+  font-family: 'Asap';
+  text-align: center;
+  background-color: #3D3B4C;
+  padding: 20px;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.text-field {
+  border: none;
+  border-radius: 20px;
+  padding: 6px;
+}
+
+.pop-up-fields {
+  border: 1px solid #216778;
+}
+
+@media (max-width: 400px) {
+  .main-wrapper {
+    margin: 0;
+  }
+  .display {
+    font-size: 16px;
+  }
+  h1 {
+    font-size: 48px;
+  }
+  .page-bottom {
+    font-size: px;
+    padding: 5px;
+  }
+
+  .login-status {
+    padding: 10px 20px 10px 20px;
+  }
+}
+
+td {
+  background-color: #EAEAEA;
+  padding: 10px;
+}
+
+th {
+  background: #9197AE;
+
+}
+
+table {
+  border: 5px solid #3D3B4C;
+  border-radius: 15px;
+}

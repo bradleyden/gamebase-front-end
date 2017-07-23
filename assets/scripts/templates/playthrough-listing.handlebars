@@ -1,0 +1,23 @@
+{{#each playthroughs as |playthrough|}}
+
+  <h1 data-id="{{playthrough.id}}"> <small>Started: {{playthrough.date_started}}</small></h1>
+  <div>
+    {{#if playthrough.date_finished}}
+      Completed: {{playthrough.date_finished}}
+    {{else}}
+      Unfinished
+    {{/if}}<br>
+
+    {{#if playthrough.time}}
+      {{playthrough.time}} hours played
+    {{else}}
+      No time
+    {{/if}}<br>
+
+    {{#if playthrough.completion}}
+      {{playthrough.completion}}% complete
+    {{else}}
+      No completion data
+    {{/if}}<br>
+
+{{/each}}

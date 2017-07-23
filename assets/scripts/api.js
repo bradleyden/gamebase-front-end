@@ -63,6 +63,28 @@ const createGame = function (data) {
   })
 }
 
+const createPlaythrough = function (data) {
+  return $.ajax({
+    url: config.apiOrigin + '/playthroughs',
+    method: 'POST',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data
+  })
+}
+
+const getPlaythroughs = function (data) {
+  return $.ajax({
+    url: config.apiOrigin + '/playthroughs',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data
+  })
+}
+
 const getGame = function (data) {
   return $.ajax({
     url: config.apiOrigin + '/games',
@@ -102,5 +124,7 @@ module.exports = {
   createGame,
   getGame,
   updateGame,
-  deleteGame
+  deleteGame,
+  createPlaythrough,
+  getPlaythroughs
 }
