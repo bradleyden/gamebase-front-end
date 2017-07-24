@@ -18,6 +18,25 @@ const onSignIn = function (event) {
   api.signIn(data)
     .then(ui.signInSuccess)
     .catch(ui.signInFailure)
+    .then(api.getAllGames)
+        .then(ui.loadGamesSuccess)
+        .catch(ui.loadGamesFailure)
+  $('.playthrough-content').show()
+  $('#library').show()
+  $(document).on('submit', '.delete-game', onDeleteGame)
+  $(document).on('submit', '.add-playthrough', onCreatePlaythrough)
+  $(document).on('submit', '.show-playthroughs', onShowPlaythroughs)
+  $(document).on('click', '.update-game-button', openEditGameModal)
+  $(document).on('click', '.add-playthrough-prompt', showNewPlaythroughForm)
+}
+
+const showNewPlaythroughForm = function () {
+  $('.add-playthrough').show()
+  $(document).on('click', '.close-new-playthrough', hideNewPlaythroughForm)
+}
+
+const hideNewPlaythroughForm = function () {
+  $('.add-playthrough').hide()
 }
 
 const onChangePassword = function (event) {
@@ -44,11 +63,23 @@ const onShowGames = function (event) {
   $(document).on('submit', '.delete-game', onDeleteGame)
   $(document).on('submit', '.add-playthrough', onCreatePlaythrough)
   $(document).on('submit', '.show-playthroughs', onShowPlaythroughs)
-  $(document).on('click', '.update-button', onClickUpdate)
+  $('#library').show()
 }
 
-const onClickUpdate = function () {
-  $('#update-id').val($(event.target).data('id'))
+const openEditGameModal = function (event) {
+  $('#updateGameModal').modal('show')
+  fillGameValues(event)
+}
+
+const fillGameValues = function (event) {
+  $('#update-game-id').val($(event.target).data('id'))
+  $('#update-game-title').val($(event.target).data('title'))
+  $('#update-game-genre').val($(event.target).data('genre'))
+  $('#update-game-platform').val($(event.target).data('platform'))
+  $('#update-game-release').val($(event.target).data('release'))
+  $('#update-game-developer').val($(event.target).data('developer'))
+  $('#update-game-publisher').val($(event.target).data('publisher'))
+  $('#update-game-playtime').val($(event.target).data('playtime'))
 }
 
 const onShowGame = function (event) {
@@ -64,6 +95,8 @@ const onShowPlaythroughs = function (event) {
   api.getPlaythroughs()
      .then(ui.showPlaythroughsSuccess)
      .catch(ui.showPlaythroughsFailure)
+  $(document).on('click', '.playthrough-update-button', onUpdatePlaythroughPrompt)
+  $(document).on('submit', '.playthrough-delete', onDeletePlaythrough)
 }
 
 const onCreateGame = function (event) {
@@ -79,6 +112,7 @@ const onCreatePlaythrough = function (event) {
   const data = getFormFields(this)
   console.log(data)
   event.preventDefault()
+  $('.add-playthrough').hide()
   api.createPlaythrough(data)
      .then(ui.createPlaythroughSuccess)
      .catch(ui.createPlaythroughFailure)
@@ -93,6 +127,25 @@ const onUpdateGame = function (event) {
      .catch(ui.updateGameFailure)
 }
 
+const onUpdatePlaythrough = function (event) {
+  event.preventDefault()
+  const data = getFormFields(this)
+  console.log(data)
+  api.updatePlaythrough(data)
+     .then(ui.updatePlaythroughSuccess)
+     .catch(ui.updatePlaythroughFailure)
+}
+
+const onUpdatePlaythroughPrompt = function (event) {
+  $('#updatePlaythroughModal').modal('show')
+  $('#update-playthrough-id').val($(event.target).data('id'))
+  $('#update-playthrough-completion').val($(event.target).data('completion'))
+  $('#update-playthrough-time').val($(event.target).data('time'))
+  $('#update-playthrough-start').val($(event.target).data('start'))
+  $('#update-playthrough-finish').val($(event.target).data('finish'))
+  $(document).on('submit', '#update-playthrough', onUpdatePlaythrough)
+}
+
 const onDeleteGame = function (event) {
   event.preventDefault()
   const data = getFormFields(this)
@@ -105,9 +158,20 @@ const onDeleteGame = function (event) {
         .catch(ui.loadGamesFailure)
 }
 
+const onDeletePlaythrough = function (event) {
+  event.preventDefault()
+  const data = getFormFields(this)
+  api.deletePlaythrough(data)
+    .then(ui.deletePlaythroughSuccess)
+    .catch(ui.deletePlaythroughFailure)
+}
+
 $(() => {
-  $('#library').hide()
+  $('#lib-wrapper').hide()
+  $('#hide-lib').hide()
   $('.logged-in').hide()
+  $('#library').hide()
+  $('.playthrough-content').hide()
 })
 
 const addHandlers = () => {

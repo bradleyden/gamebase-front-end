@@ -85,6 +85,28 @@ const getPlaythroughs = function (data) {
   })
 }
 
+const updatePlaythrough = function (data) {
+  return $.ajax({
+    url: config.apiOrigin + '/playthroughs/' + data.playthrough.id,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data
+  })
+}
+
+const deletePlaythrough = function (data) {
+  return $.ajax({
+    url: config.apiOrigin + '/playthroughs/' + data.playthrough.id,
+    method: 'DELETE',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data
+  })
+}
+
 const getGame = function (data) {
   return $.ajax({
     url: config.apiOrigin + '/games',
@@ -126,5 +148,7 @@ module.exports = {
   updateGame,
   deleteGame,
   createPlaythrough,
-  getPlaythroughs
+  getPlaythroughs,
+  updatePlaythrough,
+  deletePlaythrough
 }

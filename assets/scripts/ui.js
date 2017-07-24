@@ -18,11 +18,12 @@ const signInSuccess = (data) => {
   store.user = data.user
   $('.logged-out').hide()
   $('.logged-in').show()
-  $('.greeting').text('Hello, ' + data.user.email)
+  $('.greeting').text('hello, ' + data.user.email)
   $('#create-game').show(400)
   $('.instructions').text('Start a new game!')
   $('.error').text('')
   $('.text-field').val('')
+  $('#index-games').show()
 }
 
 const signInFailure = () => {
@@ -44,8 +45,9 @@ const signOutSuccess = (data) => {
   $('#create-game').hide()
   $('.logged-in').hide()
   $('.logged-out').show()
-  $('#game-board').hide()
-  $('.instructions').text('Welcome to Tic-Tac-Toe! Please sign in or sign up to start playing!')
+  $('#library tbody').empty()
+  $('#library').DataTable().destroy()
+  $('#library').hide()
 }
 
 const signOutFailure = (eror) => {
@@ -65,7 +67,7 @@ const createGameFailure = () => {
 }
 
 const createPlaythroughSuccess = (data) => {
-  console.log('Success!')
+  showPlaythroughsSuccess(data)
 }
 
 const createPlaythroughFailure = () => {
@@ -73,13 +75,12 @@ const createPlaythroughFailure = () => {
 
 const showPlaythroughsSuccess = (data) => {
   const filteredData = data.playthroughs.filter(function (item) {
-    console.log(item.game_id)
     return item.game_id == document.getElementsByClassName('playthrough-content')[0].id
   })
   console.log(filteredData)
   console.log(document.getElementsByClassName('playthrough-content')[0].id)
   const showPlaythroughsHtml = showPlaythroughsTemplate({ playthroughs: filteredData })
-  $('.playthrough-content').html(showPlaythroughsHtml)
+  $('.playthrough-body').html(showPlaythroughsHtml)
 }
 
 const showPlaythroughsFailure = () => {
@@ -92,6 +93,8 @@ const loadGamesSuccess = (data) => {
   $('#library tbody').append(showGamesHtml)
   $('#library').show()
   $('#library').DataTable()
+  $('#index-games').hide()
+  $('.add-playthrough').hide()
 }
 
 const loadGamesFailure = () => {
@@ -113,16 +116,31 @@ const updateGameSuccess = (data) => {
 const updateGameFailure = () => {
 }
 
+const updatePlaythroughSuccess = (data) => {
+  $('#updatePlaythroughModal').modal('hide')
+  showPlaythroughsSuccess(data)
+}
+
+const updatePlaythroughFailure = () => {
+}
+
 const deleteGameSuccess = (data) => {
   console.log(data)
   const showGamesHtml = showGamesTemplate({ games: data.games })
   $('#library tbody').empty()
   $('#library').DataTable().destroy()
   $('#library tbody').append(showGamesHtml)
-  // $('#library').DataTable().draw()
+  $('.playthrough-body').empty()
 }
 
 const deleteGameFailure = () => {
+}
+
+const deletePlaythroughSuccess = (data) => {
+  showPlaythroughsSuccess(data)
+}
+
+const deletePlaythroughFailure = () => {
 }
 
 module.exports = {
@@ -147,5 +165,9 @@ module.exports = {
   createPlaythroughSuccess,
   createPlaythroughFailure,
   showPlaythroughsSuccess,
-  showPlaythroughsFailure
+  showPlaythroughsFailure,
+  updatePlaythroughSuccess,
+  updatePlaythroughFailure,
+  deletePlaythroughSuccess,
+  deletePlaythroughFailure
 }

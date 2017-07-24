@@ -1,23 +1,35 @@
 {{#each playthroughs as |playthrough|}}
 
-  <h1 data-id="{{playthrough.id}}"> <small>Started: {{playthrough.date_started}}</small></h1>
+  <h2>{{playthrough.game.title}}</h2>
+  <form class="playthrough-delete">
+      <fieldset>
+        <input class='pop-up-fields text-field' type='hidden' value={{playthrough.id}} name='playthrough[id]'>
+        <button class="btn btn-primary btn-lg" type="submit"><i class="fa fa-trash" aria-hidden="true"></i></button
+      </fieldset>
+    </form>
+    <button data-id="{{playthrough.id}}" type="button" class="playthrough-update-button btn btn-primary btn-lg" data-completion="{{playthrough.completion}}" data-id="{{playthrough.id}}" data-time="{{playthrough.time}}" data-start="{{playthrough.date_started}}" data-finish="{{playthrough.date_finished}}">
+      <i class="fa fa-pencil" aria-hidden="true" data-id="{{playthrough.id}}" data-completion="{{playthrough.completion}}" data-time="{{playthrough.time}}" data-start="{{playthrough.date_started}}" data-finish="{{playthrough.date_finished}}"></i>
+  </button>
+
+  <h3 data-id="{{playthrough.id}}">Started: {{playthrough.date_started}}</h3>
   <div>
     {{#if playthrough.date_finished}}
-      Completed: {{playthrough.date_finished}}
+      <h3>Completed: {{playthrough.date_finished}}</h3>
     {{else}}
-      Unfinished
-    {{/if}}<br>
+      <h3>Unfinished</h3>
+    {{/if}}
 
     {{#if playthrough.time}}
-      {{playthrough.time}} hours played
+      <h3>{{playthrough.time}} hours played</h3>
     {{else}}
-      No time
-    {{/if}}<br>
+      <h3>No time</h3>
+    {{/if}}
 
     {{#if playthrough.completion}}
-      {{playthrough.completion}}% complete
+      <h3>{{playthrough.completion}}% complete</h3>
     {{else}}
-      No completion data
-    {{/if}}<br>
+      <h3>No completion data</h3>
+    {{/if}}
+    <hr>
 
 {{/each}}

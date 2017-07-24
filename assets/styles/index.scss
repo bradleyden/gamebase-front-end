@@ -1,22 +1,13 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
-.box {
-  padding: 4px;
-  border: 2px solid #216778;
-}
-
-.box:hover {
-  background: #97b0b6;
-}
-
 body {
   width: auto;
-  background-color: #f9f9f9;
+  background-color: #FAFAFA;
 }
 
 .main-wrapper {
-  font-family: 'Asap';
+  font-family: 'Open Sans';
   color: black;
   font-size: 18px;
   line-height: 1.6;
@@ -26,10 +17,29 @@ body {
   text-align: center;
 }
 
+.logo {
+  padding: 10px;
+  float: left;
+  display: inline;
+  text-shadow: 3px 3px rgba(0, 0, 0, .3);
+}
+
 h1 {
   color: #CDE25F;
-  font-family: 'Electrolize';
-  font-size: 72px;
+  font-family: 'Play';
+  font-size: 64px;
+}
+
+h2 {
+  color: #black;
+  font-family: 'Play';
+  font-size: 36px;
+}
+
+h3 {
+  color: #9A9A9A;
+  font-family: 'Play';
+  font-size: 20px;
 }
 
 .display {
@@ -38,33 +48,44 @@ h1 {
   text-align: left;
 }
 
-.login-status {
+.header {
   background-color: #3D3B4C;
-  border-radius: 15px 15px 0 0;
   padding: 20px;
+  height: 200px;
+  width: 100%;
+}
+
+.login-status {
+  text-align: right;
 }
 
 .btn {
-  font-family: 'Asap';
-  background-color: #CCDBDC;
+  font-family: 'Open Sans';
+  background-color: #FAFAFA;
   border-radius: 10px;
-  color: #454851;
+  color: #3D3B4C;
   font-size: 14px;
   margin: 3px 0;
   padding: 5px 9px;
+}
+
+.btn:hover {
+  background-color: #CDE25F;
+  color: #3D3B4C;
 }
 
 .greeting,
 .signInError,
 .signUpError,
 .changePwError {
+  font-family: 'Play';
   font-size: 16px;
-  color: #216778;
+  color: #CDE25F;
   font-weight: 800;
 }
 
 .page-bottom {
-  font-family: 'Asap';
+  font-family: 'Open Sans';
   text-align: center;
   background-color: #3D3B4C;
   padding: 20px;
@@ -75,10 +96,15 @@ h1 {
   right: 0;
 }
 
-.text-field {
-  border: none;
+.text-field,
+input {
+  border: 1px solid #3D3B4C;
   border-radius: 20px;
   padding: 6px;
+}
+
+label {
+  font-family: 'Open Sans';
 }
 
 .pop-up-fields {
@@ -92,9 +118,7 @@ h1 {
   .display {
     font-size: 16px;
   }
-  h1 {
-    font-size: 48px;
-  }
+
   .page-bottom {
     font-size: px;
     padding: 5px;
@@ -111,11 +135,45 @@ td {
 }
 
 th {
-  background: #9197AE;
+  background: #66687F;
+  color: #EAEAEA;
 
 }
 
 table {
-  border: 5px solid #3D3B4C;
-  border-radius: 15px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, .4);
+}
+
+.dataTables_wrapper {
+  float: left;
+  width: 70%;
+}
+
+.playthrough-content {
+  position: fixed;
+  width: 25%;
+  height: 69%;
+  right: 0;
+  overflow: scroll;
+  background-color: #EAEAEA;
+  padding: 5px;
+}
+
+.playthroughs-header {
+  font-family: 'Play';
+  font-size: 36px;
+  padding: 5px;
+  text-align: center;
+  color: white;
+  background: #66687F;
+}
+
+.table-data {
+  color: #3D3B4C;
+  text-align: left;
+  vertical-align: center;
+}
+
+.signup-prompt {
+  color: #FAFAFA;
 }
