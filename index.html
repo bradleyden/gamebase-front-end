@@ -1,25 +1,300 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Example</title>
+      <title>GameBase</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <!-- Do not add `link` tags unless you know what you are doing -->
       <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans|Play" rel="stylesheet">
+      <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet">
       <!-- Do not add `script` tags unless you know what you are doing -->
+      <script src="https://use.fontawesome.com/b9279fc81b.js"></script>
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body class="container-fluid">
-      <h1>Example</h1>
+    <div class="header">
+      <div class='logo'>
+        <h1>GameBase</h1>
+      </div>
+      <div class="login-status">
+      <div class="logged-out">
+        <div class="signInError"></div>
+        <form id="sign-in">
+          <fieldset>
+            <input class='text-field' type='text' placeholder='Email' name='credentials[email]'>
+            <input class='text-field' type='password' placeholder='Password' name='credentials[password]'>
+            <button class="btn btn-primary btn-lg" type="submit">Sign in!</button>
+          </fieldset>
+        </form>
+        <p class="signup-prompt">Don't have an account?</p>
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#signUpModal">
+      Sign Up!
+    </button><br><br>
+    </div>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-      ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.</p>
+    <div class="logged-in">
+      <div class="greeting"></div>
+      <form id="sign-out">
+        <fieldset>
+          <input type="submit" class="btn btn-primary btn-lg" name="submit" value="Sign Out">
+          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#changePwModal">Change Password</button>
+        </fieldset>
+      </form><br><br><br>
+    </div>
+  </div>
+</div>
+
+  <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Sign Up!</h4>
+      </div>
+      <div class="modal-body">
+        <form id="sign-up">
+          <fieldset>
+            <input class='pop-up-fields text-field' type='text' placeholder='Email' name='credentials[email]'> <br> <br>
+            <input class='pop-up-fields text-field' type='password' placeholder='Password' name='credentials[password]'><br> <br>
+            <input class='pop-up-fields text-field' type='password' placeholder='Re-enter Password' name='credentials[password_confirmation]'><br><br>
+            <button class="btn btn-primary btn-lg" type="submit">Sign up</button>
+          </fieldset><br>
+          <div class="signUpError"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="changePwModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Change Password</h4>
+      </div>
+      <div class="modal-body">
+        <form id="change-pw">
+          <fieldset>
+            <input class='pop-up-fields text-field' type='password' placeholder='Current Password' name='passwords[old]'> <br> <br>
+            <input class='pop-up-fields text-field' type='password' placeholder='New Password' name='passwords[new]'><br> <br>
+            <button class="btn btn-primary btn-lg" type="submit">Change Password</button>
+          </fieldset><br>
+          <div class="changePwError"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="logged-out landing-page">
+<img class="landing-page-image"
+ src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MTIuMDAyIDUxMi4wMDIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMi4wMDIgNTEyLjAwMjsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI1MTJweCIgaGVpZ2h0PSI1MTJweCI+CjxnPgoJPHBhdGggc3R5bGU9ImZpbGw6IzcwNzI4NzsiIGQ9Ik0xMzguMTgyLDk1Ljc0Mkg3My4zNjZjLTkuNzU3LDAtMTcuNjY2LDcuOTA5LTE3LjY2NiwxNy42NjZ2MzYuNDE2aDEwMC4xNDl2LTM2LjQxNiAgIEMxNTUuODQ4LDEwMy42NTEsMTQ3LjkzOSw5NS43NDIsMTM4LjE4Miw5NS43NDJ6Ii8+Cgk8cGF0aCBzdHlsZT0iZmlsbDojNzA3Mjg3OyIgZD0iTTM3My44MTgsOTUuNzQyaDY0LjgxNmM5Ljc1NywwLDE3LjY2Niw3LjkwOSwxNy42NjYsMTcuNjY2djM2LjQxNkgzNTYuMTUxdi0zNi40MTYgICBDMzU2LjE1MiwxMDMuNjUxLDM2NC4wNjEsOTUuNzQyLDM3My44MTgsOTUuNzQyeiIvPgo8L2c+CjxwYXRoIHN0eWxlPSJmaWxsOiM0NjQ2NTU7IiBkPSJNNDU2LjMwMSwxMjguMDg3SDM0NS42Yy0xNS41MzYsMC0yOC4xMzEsMTIuNTk0LTI4LjEzMSwyOC4xMzF2MjUuNTc0SDE5NC41MzF2LTI1LjU3NCAgYzAtMTUuNTM2LTEyLjU5NC0yOC4xMzEtMjguMTMxLTI4LjEzMUg1NS43Yy0zMC43NjIsMC01NS43LDI0LjkzOC01NS43LDU1LjdWMzQ0LjU5YzAsMzkuNTgyLDMyLjA4Nyw3MS42Nyw3MS42Nyw3MS42N2wwLDAgIGMyMy43NTQsMCw0My4wMTEtMTkuMjU2LDQzLjAxMS00My4wMTF2LTU2LjYxYzEwLjE3NywxNi42MTgsMjguNDk4LDI3LjcwOSw0OS40MTIsMjcuNzA5YzIxLjkyLDAsNDAuOTkzLTEyLjE4NCw1MC44MjQtMzAuMTQ2ICBoODIuMTY5YzkuODMxLDE3Ljk2MiwyOC45MDMsMzAuMTQ2LDUwLjgyNCwzMC4xNDZjMjAuOTE0LDAsMzkuMjM1LTExLjA5MSw0OS40MTItMjcuNzA5djU2LjYxICBjMCwyMy43NTQsMTkuMjU2LDQzLjAxMSw0My4wMTEsNDMuMDExbDAsMGMzOS41ODIsMCw3MS42Ny0zMi4wODcsNzEuNjctNzEuNjdWMTgzLjc4N0M1MTIsMTUzLjAyNSw0ODcuMDYzLDEyOC4wODcsNDU2LjMwMSwxMjguMDg3ICB6Ii8+CjxwYXRoIHN0eWxlPSJvcGFjaXR5OjAuMTtlbmFibGUtYmFja2dyb3VuZDpuZXcgICAgOyIgZD0iTTMxOC40MzQsMTU1LjQwMUgxOTMuNTY4Yy03Ljg4LDAtMTQuMjY4LDYuMzg4LTE0LjI2OCwxNC4yNjh2NDIuNTgxICBjMCwxMi45NjcsMTAuNTEyLDIzLjQ4LDIzLjQ4LDIzLjQ4aDEwNi40NDJjMTIuOTY3LDAsMjMuNDgtMTAuNTEyLDIzLjQ4LTIzLjQ4di00Mi41ODEgIEMzMzIuNywxNjEuNzg5LDMyNi4zMTMsMTU1LjQwMSwzMTguNDM0LDE1NS40MDF6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiM1QjVENkU7IiBkPSJNMzE4LjQzNCwxNDAuODk5SDE5My41NjhjLTcuODgsMC0xNC4yNjgsNi4zODgtMTQuMjY4LDE0LjI2OHY0Mi41ODEgIGMwLDEyLjk2NywxMC41MTIsMjMuNDgsMjMuNDgsMjMuNDhoMTA2LjQ0MmMxMi45NjcsMCwyMy40OC0xMC41MTIsMjMuNDgtMjMuNDh2LTQyLjU4MSAgQzMzMi43LDE0Ny4yODcsMzI2LjMxMywxNDAuODk5LDMxOC40MzQsMTQwLjg5OXoiLz4KPHBhdGggc3R5bGU9ImZpbGw6IzcwNzI4NzsiIGQ9Ik0zMTguNDM0LDE0MC44OTlIMTkzLjU2OGMtNy44OCwwLTE0LjI2OCw2LjM4OC0xNC4yNjgsMTQuMjY4VjE3MS45ICBjMC03Ljg3OSw2LjM4OC0xNC4yNjgsMTQuMjY4LTE0LjI2OGgxMjQuODY2YzcuODc5LDAsMTQuMjY4LDYuMzg4LDE0LjI2OCwxNC4yNjh2LTE2LjczMyAgQzMzMi43LDE0Ny4yODcsMzI2LjMxMywxNDAuODk5LDMxOC40MzQsMTQwLjg5OXoiLz4KPHBhdGggc3R5bGU9Im9wYWNpdHk6MC4xO2VuYWJsZS1iYWNrZ3JvdW5kOm5ldyAgICA7IiBkPSJNMTkxLjg0OSwyOTcuNmMwLDE1LjMzLTEyLjQyNywyNy43NTYtMjcuNzU2LDI3Ljc1NiAgYy0xNS4zMywwLTI3Ljc1Ni0xMi40MjctMjcuNzU2LTI3Ljc1NnYtMTEuMTU1aDU1LjUxM0wxOTEuODQ5LDI5Ny42eiIvPgo8cGF0aCBzdHlsZT0ib3BhY2l0eTowLjE7ZW5hYmxlLWJhY2tncm91bmQ6bmV3ICAgIDsiIGQ9Ik0zNzUuNjY0LDI5Ny42YzAsMTUuMzMtMTIuNDI3LDI3Ljc1Ni0yNy43NTYsMjcuNzU2ICBjLTE1LjMzLDAtMjcuNzU2LTEyLjQyNy0yNy43NTYtMjcuNzU2di0xMS4xNTVoNTUuNTEzVjI5Ny42SDM3NS42NjR6Ii8+CjxjaXJjbGUgc3R5bGU9ImZpbGw6IzVCNUQ2RTsiIGN4PSIxNjQuMDk2IiBjeT0iMjg2LjQ0OSIgcj0iMjcuNzU2Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiM3MDcyODc7IiBkPSJNMTY0LjA5MywyNjkuODQ0YzEzLjQxOSwwLDI0LjYxMyw5LjUyMiwyNy4xOTUsMjIuMTc4YzAuMzY4LTEuODAyLDAuNTYxLTMuNjY3LDAuNTYxLTUuNTc4ICBjMC0xNS4zMy0xMi40MjctMjcuNzU2LTI3Ljc1Ni0yNy43NTZzLTI3Ljc1NiwxMi40MjctMjcuNzU2LDI3Ljc1NmMwLDEuOTExLDAuMTkzLDMuNzc2LDAuNTYxLDUuNTc4ICBDMTM5LjQ3OSwyNzkuMzY3LDE1MC42NzMsMjY5Ljg0NCwxNjQuMDkzLDI2OS44NDR6Ii8+CjxjaXJjbGUgc3R5bGU9ImZpbGw6IzVCNUQ2RTsiIGN4PSIzNDcuOTA0IiBjeT0iMjg2LjQ0OSIgcj0iMjcuNzU2Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiM3MDcyODc7IiBkPSJNMzQ3LjkwOCwyNjkuODQ0YzEzLjQxOSwwLDI0LjYxMyw5LjUyMiwyNy4xOTUsMjIuMTc4YzAuMzY4LTEuODAyLDAuNTYxLTMuNjY3LDAuNTYxLTUuNTc4ICBjMC0xNS4zMy0xMi40MjctMjcuNzU2LTI3Ljc1Ni0yNy43NTZzLTI3Ljc1NiwxMi40MjctMjcuNzU2LDI3Ljc1NmMwLDEuOTExLDAuMTkzLDMuNzc2LDAuNTYxLDUuNTc4ICBDMzIzLjI5NSwyNzkuMzY3LDMzNC40OSwyNjkuODQ0LDM0Ny45MDgsMjY5Ljg0NHoiLz4KPHBhdGggc3R5bGU9Im9wYWNpdHk6MC4xO2VuYWJsZS1iYWNrZ3JvdW5kOm5ldyAgICA7IiBkPSJNMjc0LjI2NSwyNzYuNjM2YzAsMTAuMDg3LTguMTc3LDE4LjI2NS0xOC4yNjUsMTguMjY1ICBzLTE4LjI2NS04LjE3Ny0xOC4yNjUtMTguMjY1di03LjgwOWgzNi41M1YyNzYuNjM2eiIvPgo8Y2lyY2xlIHN0eWxlPSJmaWxsOiNGRjY0NjU7IiBjeD0iMjU2LjAwNiIgY3k9IjI2OC44MjQiIHI9IjE4LjI2NSIvPgo8cG9seWdvbiBzdHlsZT0ib3BhY2l0eTowLjE7ZW5hYmxlLWJhY2tncm91bmQ6bmV3ICAgIDsiIHBvaW50cz0iMTQ2LjY5MywyMTAuOTI4IDExNS45NTIsMjEwLjkyOCAxMTUuOTUyLDE4MC4xODcgODIuODAzLDE4MC4xODcgICA4Mi44MDMsMjEwLjkyOCA1Mi4wNjEsMjEwLjkyOCA1Mi4wNjEsMjQ0LjA3NyA4Mi44MDMsMjQ0LjA3NyA4Mi44MDMsMjc0LjgxOSAxMTUuOTUyLDI3NC44MTkgMTE1Ljk1MiwyNDQuMDc3IDE0Ni42OTMsMjQ0LjA3NyAiLz4KPHBvbHlnb24gc3R5bGU9ImZpbGw6IzVCNUQ2RTsiIHBvaW50cz0iMTQ2LjY5MywxOTcuNTQyIDExNS45NTIsMTk3LjU0MiAxMTUuOTUyLDE2Ni44MDEgODIuODAzLDE2Ni44MDEgODIuODAzLDE5Ny41NDIgICA1Mi4wNjEsMTk3LjU0MiA1Mi4wNjEsMjMwLjY5IDgyLjgwMywyMzAuNjkgODIuODAzLDI2MS40MzIgMTE1Ljk1MiwyNjEuNDMyIDExNS45NTIsMjMwLjY5IDE0Ni42OTMsMjMwLjY5ICIvPgo8cGF0aCBzdHlsZT0ib3BhY2l0eTowLjE7ZW5hYmxlLWJhY2tncm91bmQ6bmV3ICAgIDsiIGQ9Ik00MjguNTgxLDE5MC41NjdjMCw4LjgxNC03LjE0NSwxNS45NTgtMTUuOTU4LDE1Ljk1OCAgcy0xNS45NTgtNy4xNDUtMTUuOTU4LTE1Ljk1OHYtNy44MDloMzEuOTE3djcuODA5SDQyOC41ODF6Ii8+CjxwYXRoIHN0eWxlPSJvcGFjaXR5OjAuMTtlbmFibGUtYmFja2dyb3VuZDpuZXcgICAgOyIgZD0iTTQyOC41ODEsMjUzLjE2NWMwLDguODE0LTcuMTQ1LDE1Ljk1OC0xNS45NTgsMTUuOTU4ICBzLTE1Ljk1OC03LjE0NS0xNS45NTgtMTUuOTU4di03LjgwOWgzMS45MTd2Ny44MDlINDI4LjU4MXoiLz4KPHBhdGggc3R5bGU9Im9wYWNpdHk6MC4xO2VuYWJsZS1iYWNrZ3JvdW5kOm5ldyAgICA7IiBkPSJNMzk3LjI4MiwyMjEuODY2YzAsOC44MTQtNy4xNDUsMTUuOTU4LTE1Ljk1OCwxNS45NTggIHMtMTUuOTU4LTcuMTQ1LTE1Ljk1OC0xNS45NTh2LTcuODA5aDMxLjkxN3Y3LjgwOUgzOTcuMjgyeiIvPgo8cGF0aCBzdHlsZT0ib3BhY2l0eTowLjE7ZW5hYmxlLWJhY2tncm91bmQ6bmV3ICAgIDsiIGQ9Ik00NTkuODgsMjIxLjg2NmMwLDguODE0LTcuMTQ1LDE1Ljk1OC0xNS45NTgsMTUuOTU4ICBjLTguODE0LDAtMTUuOTU4LTcuMTQ1LTE1Ljk1OC0xNS45NTh2LTcuODA5aDMxLjkxN3Y3LjgwOUg0NTkuODh6Ii8+CjxjaXJjbGUgc3R5bGU9ImZpbGw6IzVGQkE5MTsiIGN4PSI0MTIuNjI4IiBjeT0iMTgyLjc2IiByPSIxNS45NTgiLz4KPGNpcmNsZSBzdHlsZT0iZmlsbDojRkZENzgyOyIgY3g9IjQxMi42MjgiIGN5PSIyNDUuMzUzIiByPSIxNS45NTgiLz4KPGNpcmNsZSBzdHlsZT0iZmlsbDojRkY2NDY1OyIgY3g9IjM4MS4zMjUiIGN5PSIyMTQuMDYyIiByPSIxNS45NTgiLz4KPGNpcmNsZSBzdHlsZT0iZmlsbDojNjRCOURDOyIgY3g9IjQ0My45MTkiIGN5PSIyMTQuMDYyIiByPSIxNS45NTgiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" />
+<h2>Welcome to GameBase. Please log in or sign up to get started.</h2>
+</div>
+
+    <br>
+    <div class="logged-in">
+    <!-- <form id="index-games">
+      <fieldset>
+        <button class="btn btn-primary btn-lg" type="submit">View Library</button>
+      </fieldset><br>
+      <div class="showLibraryError"></div>
+    </form> -->
+
+    <button type="button" class="new-game-btn btn btn-primary btn-lg" data-toggle="modal" data-target="#addGameModal">
+      <p>Add New Game</p>
+    </button>
+
+    <table id="library"
+         class="table"
+         data-toggle="table"
+         data-sort-name="title"
+         data-sort-order="desc">
+      <thead>
+      <tr>
+          <th data-field="title"
+              data-sortable="true">
+                  Title
+          </th>
+          <th data-field="genre"
+              data-sortable="true">
+                  Genre
+          </th>
+          <th data-field="platform"
+              data-sortable="true">
+                  Platform
+          </th>
+          <th data-field="release"
+              data-sortable="true">
+                  Release Date
+          </th>
+          <th data-field="developer"
+              data-sortable="true">
+                  Developer
+          </th>
+          <th data-field="publisher"
+              data-sortable="true">
+                  Publisher
+          </th>
+          <th data-field="playtime"
+              data-sortable="true">
+                  Playtime
+          </th>
+          <th data-field="playthroughs"
+              data-sortable="false">
+                  Playthroughs
+          </th>
+          <th data-field="edit-delete"
+              data-sortable="false">
+                  Edit/Delete
+          </th>
+      </tr>
+      </thead>
+      <tbody>
+      </tbody>
+  </table>
+
+  <div class="modal fade" id="addGameModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Add Game To Library</h4>
+        </div>
+        <div class="modal-body">
+          <form id="create-game">
+            <fieldset>
+              <p>Title:</p>
+              <input class='pop-up-fields text-field' type='text' placeholder='Title' name='game[title]'> <br> <br>
+              <p>Platform:</p>
+              <select name='game[platform]'>
+                <option value="PC">PC</option>
+                <option value="Playstation 4">Playstation 4</option>
+                <option value="Xbox One">Xbox One</option>
+                <option value="Nintendo Switch">Nintendo Switch</option>
+              </select><br><br>
+              <p>Genre:</p>
+              <input class='pop-up-fields text-field' type='text' placeholder='Genre' name='game[genre]'> <br> <br>
+              <p>Release Date:</p>
+              <input class='pop-up-fields text-field' type='date' placeholder='Release Date' name='game[release]'> <br> <br>
+              <p>Developer:</p>
+              <input class='pop-up-fields text-field' type='text' placeholder='Developer' name='game[developer]'> <br> <br>
+              <p>Publisher:</p>
+              <input class='pop-up-fields text-field' type='text' placeholder='Publisher' name='game[publisher]'> <br> <br>
+              <p>Playtime:</p>
+              <input class='pop-up-fields text-field' type='number' placeholder='Playtime' name='game[playtime]'> &nbsp;&nbsp; hours<br> <br>
+              <button class="btn btn-primary btn-lg" type="submit">Add Game</button>
+            </fieldset><br>
+            <div class="signUpError"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="modal fade update-modal" id="updateGameModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Edit Game Info</h4>
+          </div>
+          <div class="modal-body">
+            <form id="update-game">
+              <fieldset>
+                <input id="update-game-id" class='pop-up-fields text-field' type='hidden' name='game[id]'>
+                <p>Title:</p>
+                <input id="update-game-title" class='pop-up-fields text-field' type='text' placeholder='Title' name='game[title]'> <br> <br>
+                <p>Platform:</p>
+                <select id="update-game-platform" name='game[platform]'>
+                  <option value="PC">PC</option>
+                  <option value="Playstation 4">Playstation 4</option>
+                  <option value="Xbox One">Xbox One</option>
+                  <option value="Nintendo Switch">Nintendo Switch</option>
+                </select><br><br>
+                <p>Genre:</p>
+                <input id="update-game-genre" class='pop-up-fields text-field' type='text' placeholder='Genre' name='game[genre]'> <br> <br>
+                <p>Release Date:</p>
+                <input id="update-game-release" class='pop-up-fields text-field' type='date' placeholder='Release Date' name='game[release]'> <br> <br>
+                <p>Developer:</p>
+                <input id="update-game-developer" class='pop-up-fields text-field' type='text' placeholder='Developer' name='game[developer]'> <br> <br>
+                <p>Publisher:</p>
+                <input id="update-game-publisher" class='pop-up-fields text-field' type='text' placeholder='Publisher' name='game[publisher]'> <br> <br>
+                <p>Playtime:</p>
+                <input id="update-game-playtime" class='pop-up-fields text-field' type='number' placeholder='Playtime' name='game[playtime]'>&nbsp;&nbsp; hours<br> <br>
+                <button class="btn btn-primary btn-lg" type="submit">Submit Changes</button>
+              </fieldset><br>
+              <div class="signUpError"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade update-modal" id="deleteGameConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Confirm Game Delete</h4>
+          </div>
+          <div class="modal-body">
+          <h2>Are you sure you want to delete this game?</h2><h3>All playthroughs contained in it will also be deleted.</h3>
+          <form class="delete-game">
+            <fieldset>
+              <input id="delete-game-id" class='pop-up-fields text-field' type='hidden' name='game[id]'>
+              <button data-id="{{game.id}}" class="delete-confirm btn btn-primary btn-lg" type="submit">I am sure! Delete!</button>
+            </fieldset>
+          </form>
+          <button id="close-delete-game" class="delete-regret btn btn-primary btn-lg">No! Abort!</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade update-modal" id="updatePlaythroughModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Edit Playthrough Info</h4>
+          </div>
+          <div class="modal-body">
+            <form id="update-playthrough">
+              <fieldset>
+                <input id="update-playthrough-id" class='pop-up-fields text-field' type='hidden' name='playthrough[id]'>
+                <p>Completion:</p>
+                <input id="update-playthrough-completion" class='pop-up-fields text-field' type='number' placeholder='Completion' name='playthrough[completion]'>&nbsp;&nbsp; %<br> <br>
+                <p>Play Time:</p>
+                <input id="update-playthrough-time" class='pop-up-fields text-field' type='number' placeholder='Time' name='playthrough[time]'>&nbsp;&nbsp; hours<br> <br>
+                <p>Date Started:</p>
+                <input id="update-playthrough-start" class='pop-up-fields text-field' type='date' placeholder='Start Date' name='playthrough[date_started]'><br><br>
+                <p>Date Finished:</p>
+                <input id="update-playthrough-finish" class='pop-up-fields text-field' type='date' placeholder='End Date' name='playthrough[date_finished]'> <br> <br>
+                <button class="btn btn-primary btn-lg"type="submit" name="submit">Submit Changes</button>
+              </fieldset><br>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <div class="playthrough-content">
+      <div class="playthroughs-header">
+      Playthroughs
+    </div>
+    <div class="playthrough-body"></div>
+    </div>
+
+    <div class="page-bottom">
+      <p>Created By Brad Leyden</p>
+      <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
     </body>
+    </div>
+
 </html>

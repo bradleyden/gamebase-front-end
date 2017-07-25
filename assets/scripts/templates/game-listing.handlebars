@@ -1,0 +1,105 @@
+{{#each games as |game|}}
+
+<tr>
+    <td><p class="table-data">{{game.title}}</p></td>
+    <td>  {{#if game.genre}}
+        <p class="table-data">{{game.genre}}</p>
+      {{else}}
+        <p class="table-data">No genre</p>
+      {{/if}} </td>
+      <td> <p class="table-data">{{game.platform}}</p> </td>
+        <td>  {{#if game.release}}
+            <p class="table-data">{{game.release}}</p>
+          {{else}}
+            <p class="table-data">No relese</p>
+          {{/if}} </td>
+          <td>  {{#if game.developer}}
+              <p class="table-data">{{game.developer}}</p>
+            {{else}}
+              <p class="table-data">No developer</p>
+            {{/if}} </td>
+            <td>  {{#if game.publisher}}
+                <p class="table-data">{{game.publisher}}</p>
+              {{else}}
+                <p class="table-data">No publisher</p>
+              {{/if}} </td>
+              <td>  {{#if game.playtime}}
+                  <p class="table-data">{{game.playtime}} hours</p>
+                {{else}}
+                  <p class="table-data">No playtime</p>
+                {{/if}} </td>
+                <td>
+
+                  <form class="add-playthrough" data-id={{game.id}}>
+                    <fieldset>
+                      <input class='pop-up-fields text-field' type='number' placeholder='Completion' name='playthrough[completion]'>&nbsp;&nbsp; %<br> <br>
+                      <input class='pop-up-fields text-field' type='number' placeholder='Time' name='playthrough[time]'>&nbsp;&nbsp; hours<br> <br>
+                      <p>Started:</p>
+                      <input class='pop-up-fields text-field' type='date' placeholder='Start Date' name='playthrough[date_started]'><br><br>
+                      <p>Finished:</p>
+                      <input class='pop-up-fields text-field' type='date' placeholder='End Date' name='playthrough[date_finished]'> <br> <br>
+                      <input class='pop-up-fields text-field' type='hidden' value={{game.id}} name='playthrough[game_id]'>
+                      <input class='pop-up-fields text-field' type='hidden' value={{game.user_id}} name='playthrough[user_id]'>
+                      <button class="btn btn-primary btn-lg" type="submit" name="submit">Submit</button>
+                    </fieldset>
+                  </form>
+
+                  <button class="add-playthrough-prompt btn btn-primary btn-lg" data-id="{{game.id}}">
+                    <i data-id="{{game.id}}" class="fa fa-plus-square" aria-hidden="true"></i>
+                  </button>
+
+                  <form class="show-playthroughs" data-id={{game.id}}>
+                    <fieldset>
+                      <input class='pop-up-fields text-field' type='hidden' value={{game.id}} name='playthrough[game_id]'>
+                      <button class="show-playthroughs update-button btn btn-primary btn-lg" data-toggle="modal" data-target="#playthroughsModal" type="submit" name="submit"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                    </fieldset>
+                  </form>
+
+                  <button type="button" class="close-new-playthrough btn btn-primary btn-lg" data-id="{{game.id}}">
+                    <i data-id="{{game.id}}" class="fa fa-times" aria-hidden="true"></i>
+                </button>
+
+                </td>
+                  <td>
+
+                    <button data-id="{{game.id}}" class="delete-btn btn btn-primary btn-lg" type="submit"><i data-id="{{game.id}}" class="fa fa-trash" aria-hidden="true"></i></button>
+
+                    <button class="update-game-button btn btn-primary btn-lg" data-id="{{game.id}}" data-title="{{game.title}}" data-genre="{{game.genre}}" data-platform="{{game.platform}}" data-release="{{game.release}}" data-developer="{{game.developer}}" data-publisher="{{game.publisher}}" data-playtime="{{game.playtime}}" type="button" class="update-game-button btn btn-primary btn-lg">
+                      <i class="fa fa-pencil" aria-hidden="true" data-id="{{game.id}}" data-title="{{game.title}}" data-genre="{{game.genre}}" data-platform="{{game.platform}}" data-release="{{game.release}}" data-developer="{{game.developer}}" data-publisher="{{game.publisher}}" data-playtime="{{game.playtime}}"></i>
+                  </button>
+                    </td>
+
+  </tr>
+
+  <!-- <tr>
+    <td>{{game.title}}</td>
+    <td>  {{#if game.genre}}
+        {{game.genre}}
+      {{else}}
+        No genre.
+      {{/if}} </td>
+      <td> {{game.platform}} </td>
+        <td>  {{#if game.release}}
+            {{game.release}}
+          {{else}}
+            No relese.
+          {{/if}} </td>
+          <td>  {{#if game.developer}}
+              {{game.developer}}
+            {{else}}
+              No developer.
+            {{/if}} </td>
+            <td>  {{#if game.publisher}}
+                {{game.publisher}}
+              {{else}}
+                No publisher.
+              {{/if}} </td>
+              <td>  {{#if game.playtime}}
+                  {{game.playtime}}
+                {{else}}
+                  No playtime.
+                {{/if}} </td>
+  </tr>
+</table> -->
+
+{{/each}}
