@@ -3,6 +3,7 @@
 const setAPIOrigin = require('../../lib/set-api-origin')
 const config = require('./config')
 const authEvents = require('./events')
+const dt = require('datatables.net')
 
 $(() => {
   setAPIOrigin(location, config)
