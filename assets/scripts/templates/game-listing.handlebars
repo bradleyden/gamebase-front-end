@@ -1,7 +1,7 @@
 {{#each games as |game|}}
 
 <tr>
-    <td><p class="table-data">{{game.title}}</p></td>
+    <td><p class="table-data">{{game.playtime}}</p></td>
     <td>  {{#if game.genre}}
         <p class="table-data">{{game.genre}}</p>
       {{else}}
@@ -24,7 +24,7 @@
                 <p class="table-data">No publisher</p>
               {{/if}} </td>
               <td>  {{#if game.playtime}}
-                  <p class="table-data">{{game.playtime}} hours</p>
+                <p class="table-data">{{game.playtime}}</p>
                 {{else}}
                   <p class="table-data">No playtime</p>
                 {{/if}} </td>
@@ -70,36 +70,5 @@
                     </td>
 
   </tr>
-
-  <!-- <tr>
-    <td>{{game.title}}</td>
-    <td>  {{#if game.genre}}
-        {{game.genre}}
-      {{else}}
-        No genre.
-      {{/if}} </td>
-      <td> {{game.platform}} </td>
-        <td>  {{#if game.release}}
-            {{game.release}}
-          {{else}}
-            No relese.
-          {{/if}} </td>
-          <td>  {{#if game.developer}}
-              {{game.developer}}
-            {{else}}
-              No developer.
-            {{/if}} </td>
-            <td>  {{#if game.publisher}}
-                {{game.publisher}}
-              {{else}}
-                No publisher.
-              {{/if}} </td>
-              <td>  {{#if game.playtime}}
-                  {{game.playtime}}
-                {{else}}
-                  No playtime.
-                {{/if}} </td>
-  </tr>
-</table> -->
 
 {{/each}}

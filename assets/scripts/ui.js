@@ -9,14 +9,14 @@ const signUpSuccess = (data) => {
   $('.text-field').val('')
 }
 const signUpFailure = () => {
-  $('.sign-up-error-msg').text('Oops! Something went wrong! Please try again!').fadeIn('fast').delay(3000).fadeOut('slow')
+  $('.sign-up-error-msg').text('Oops! Something went wrong! Please check required fields and try again!').fadeIn('fast').delay(3000).fadeOut('slow')
 }
 
 const signInSuccess = (data) => {
   store.user = data.user
   $('.logged-out').hide()
   $('.logged-in').show()
-  $('.greeting').text('hello, ' + data.user.email)
+  $('.greeting').text('welcome back, ' + data.user.email)
   $('#create-game').show(400)
   $('.instructions').text('Start a new game!')
   $('.error').text('')
@@ -36,7 +36,7 @@ const changePasswordSuccess = (data) => {
 }
 
 const changePasswordFailure = () => {
-  $('.change-pw-error-msg').text('Oops! Something went wrong! Please try again!').fadeIn('fast').delay(3000).fadeOut('slow')
+  $('.change-pw-error-msg').text('The password you entered is incorrect! Please try again.').fadeIn('fast').delay(3000).fadeOut('slow')
 }
 
 const signOutSuccess = (data) => {
@@ -50,7 +50,7 @@ const signOutSuccess = (data) => {
   $('.playthrough-content').hide()
 }
 
-const signOutFailure = (eror) => {
+const signOutFailure = () => {
 }
 
 const createGameSuccess = (data) => {
@@ -91,6 +91,7 @@ const showPlaythroughsSuccess = (data) => {
 }
 
 const showPlaythroughsFailure = () => {
+  $('.playthrough-error-msg').text('Oops! Something went wrong! Please try again!').fadeIn('fast').delay(3000).fadeOut('slow')
 }
 
 const loadGamesSuccess = (data) => {
