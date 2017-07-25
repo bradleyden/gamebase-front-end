@@ -67,17 +67,6 @@ const onSignOut = function (event) {
     .catch(ui.signOutFailure)
 }
 
-// const onShowGames = function (event) {
-//   event.preventDefault()
-//   api.getAllGames()
-//      .then(ui.loadGamesSuccess)
-//      .catch(ui.loadGamesFailure)
-//   $(document).on('submit', '.delete-game', onDeleteGame)
-//   $(document).on('submit', '.add-playthrough', onCreatePlaythrough)
-//   $(document).on('submit', '.show-playthroughs', onShowPlaythroughs)
-//   $('#library').show()
-// }
-
 const openEditGameModal = function (event) {
   $('#updateGameModal').modal('show')
   fillGameValues(event)
@@ -111,7 +100,6 @@ const onShowPlaythroughs = function (event) {
 
 const onCreateGame = function (event) {
   const data = getFormFields(this)
-  console.log(data)
   event.preventDefault()
   api.createGame(data)
      .then(ui.createGameSuccess)
@@ -129,7 +117,6 @@ const onCreatePlaythrough = function (event) {
 
 const onUpdateGame = function (event) {
   const data = getFormFields(this)
-  console.log(data)
   event.preventDefault()
   api.updateGame(data)
      .then(ui.updateGameSuccess)
@@ -139,7 +126,6 @@ const onUpdateGame = function (event) {
 const onUpdatePlaythrough = function (event) {
   event.preventDefault()
   const data = getFormFields(this)
-  console.log(data)
   api.updatePlaythrough(data)
      .then(ui.updatePlaythroughSuccess)
      .catch(ui.updatePlaythroughFailure)
@@ -157,7 +143,6 @@ const onUpdatePlaythroughPrompt = function (event) {
 const onDeleteGame = function (event) {
   event.preventDefault()
   const data = getFormFields(this)
-  console.log(data)
   api.deleteGame(data)
      .then(ui.deleteGameSuccess)
      .catch(ui.deleteGameFailure)

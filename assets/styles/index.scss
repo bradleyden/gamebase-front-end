@@ -1,4 +1,4 @@
-$icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
+  $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
 body {
@@ -36,7 +36,7 @@ h2 {
 }
 
 h3 {
-  color: #9A9A9A;
+  color: #4d4d4d;
   font-family: 'Play';
   font-size: 20px;
 }
@@ -223,6 +223,7 @@ p {
 }
 
 .landing-page-image {
+  z-index: 0;
   width: 30%;
 }
 
@@ -270,4 +271,21 @@ p {
 
 .error-msg {
   color: red;
+}
+
+.sub-heading {
+  margin: 0 auto;
+  max-width: 60%;
+  color: #0A0A0A;
+}
+
+.landing-page-btn {
+  position: relative;
+  z-index: 100;
+  font-family: 'Play';
+  font-size: 32px;
+  padding: 10px;
+  margin: 40px 0 -85px;
+  color: white;
+  background-color: #3D3B4C;
 }
