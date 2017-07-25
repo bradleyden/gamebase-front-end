@@ -21,9 +21,6 @@ const onSignIn = function (event) {
     .then(api.getAllGames)
         .then(ui.loadGamesSuccess)
         .catch(ui.loadGamesFailure)
-  $('.playthrough-content').show()
-  $('.new-game-btn').show()
-  $('#library').show()
 }
 
 const showDeleteConfirm = function (event) {

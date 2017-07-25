@@ -9,8 +9,7 @@ const signUpSuccess = (data) => {
   $('.text-field').val('')
 }
 const signUpFailure = () => {
-  $('.signUpError').text('Oops! Something went wrong! Please try again!').fadeIn('fast')
-  $('.signUpError').delay(3000).fadeOut('slow')
+  $('.sign-up-error-msg').text('Oops! Something went wrong! Please try again!').fadeIn('fast').delay(3000).fadeOut('slow')
 }
 
 const signInSuccess = (data) => {
@@ -22,12 +21,13 @@ const signInSuccess = (data) => {
   $('.instructions').text('Start a new game!')
   $('.error').text('')
   $('.text-field').val('')
-  $('#index-games').show()
+  $('.playthrough-content').show()
+  $('.new-game-btn').show()
+  $('#library').show()
 }
 
 const signInFailure = () => {
-  $('.signInError').text('Oops! Something went wrong! Please check your username and password and try again!').fadeIn('fast')
-  $('.signInError').delay(3000).fadeOut('slow')
+  $('.sign-in-error-msg').text('Oops! Something went wrong! Please check your username and password and try again!').fadeIn('fast').delay(3000).fadeOut('slow')
 }
 
 const changePasswordSuccess = (data) => {
@@ -36,8 +36,7 @@ const changePasswordSuccess = (data) => {
 }
 
 const changePasswordFailure = () => {
-  $('.changePwError').text('Oops! Something went wrong! Please try again!').fadeIn('fast')
-  $('.changePwError').delay(3000).fadeOut('slow')
+  $('.change-pw-error-msg').text('Oops! Something went wrong! Please try again!').fadeIn('fast').delay(3000).fadeOut('slow')
 }
 
 const signOutSuccess = (data) => {
@@ -61,9 +60,11 @@ const createGameSuccess = (data) => {
   $('#library').DataTable().destroy()
   $('#library tbody').append(showGamesHtml)
   loadGamesSuccess(data)
+  $('.text-field').val('')
 }
 
 const createGameFailure = () => {
+  $('.add-game-error-msg').text('Oops! Something went wrong! Please check required fields and try again!').fadeIn('fast').delay(3000).fadeOut('slow')
 }
 
 const createPlaythroughSuccess = (data) => {
@@ -71,6 +72,7 @@ const createPlaythroughSuccess = (data) => {
 }
 
 const createPlaythroughFailure = () => {
+  $('.playthrough-error-msg').text('Oops! Something went wrong! Please check required fields and try again!').fadeIn('fast').delay(3000).fadeOut('slow')
 }
 
 const showPlaythroughsSuccess = (data) => {
@@ -115,9 +117,11 @@ const updateGameSuccess = (data) => {
   console.log('updatedata: ' + data)
   $('#updateGameModal').modal('hide')
   loadGamesSuccess(data)
+  $('.text-field').val('')
 }
 
 const updateGameFailure = () => {
+  $('.update-game-error-msg').text('Oops! Something went wrong! Please check required fields and try again!').fadeIn('fast').delay(3000).fadeOut('slow')
 }
 
 const updatePlaythroughSuccess = (data) => {
@@ -126,6 +130,7 @@ const updatePlaythroughSuccess = (data) => {
 }
 
 const updatePlaythroughFailure = () => {
+  $('.update-playthrough-error-msg').text('Oops! Something went wrong! Please check required fields and try again!').fadeIn('fast').delay(3000).fadeOut('slow')
 }
 
 const deleteGameSuccess = (data) => {
