@@ -29,39 +29,41 @@
                   <p class="table-data">No playtime</p>
                 {{/if}} </td>
                 <td>
-                  <form class="show-playthroughs" data-id={{game.id}}>
+
+                  <form class="add-playthrough" data-id={{game.id}}>
                     <fieldset>
-                      <input class='pop-up-fields text-field' type='hidden' value={{game.id}} name='playthrough[game_id]'>
-                      <button class="show-playthroughs update-button btn btn-primary btn-lg" data-toggle="modal" data-target="#playthroughsModal" type="submit" name="submit"><i class="fa fa-eye" aria-hidden="true"></i></button
-                    </fieldset>
-                  </form>
-                  <button class="add-playthrough-prompt btn btn-primary btn-lg">
-                    <i class="fa fa-plus-square" aria-hidden="true"></i>
-                  </button>
-                  <form class="add-playthrough">
-                    <fieldset>
-                      <input class='pop-up-fields text-field' type='number' placeholder='Completion' name='playthrough[completion]'> <br> <br>
-                      <input class='pop-up-fields text-field' type='number' placeholder='Time' name='playthrough[time]'> <br> <br>
+                      <input class='pop-up-fields text-field' type='number' placeholder='Completion' name='playthrough[completion]'>&nbsp;&nbsp; %<br> <br>
+                      <input class='pop-up-fields text-field' type='number' placeholder='Time' name='playthrough[time]'>&nbsp;&nbsp; hours<br> <br>
                       <p>Started:</p>
                       <input class='pop-up-fields text-field' type='date' placeholder='Start Date' name='playthrough[date_started]'><br><br>
                       <p>Finished:</p>
                       <input class='pop-up-fields text-field' type='date' placeholder='End Date' name='playthrough[date_finished]'> <br> <br>
                       <input class='pop-up-fields text-field' type='hidden' value={{game.id}} name='playthrough[game_id]'>
                       <input class='pop-up-fields text-field' type='hidden' value={{game.user_id}} name='playthrough[user_id]'>
-                      <button class="update-button btn btn-primary btn-lg"type="submit" name="submit">Submit</button>
-                      <button type="button" class="close-new-playthrough btn btn-primary btn-lg">
-                        <i class="fa fa-times" aria-hidden="true"></i>
-                    </button>
+                      <button class="btn btn-primary btn-lg" type="submit" name="submit">Submit</button>
                     </fieldset>
                   </form>
+
+                  <button class="add-playthrough-prompt btn btn-primary btn-lg" data-id="{{game.id}}">
+                    <i data-id="{{game.id}}" class="fa fa-plus-square" aria-hidden="true"></i>
+                  </button>
+
+                  <form class="show-playthroughs" data-id={{game.id}}>
+                    <fieldset>
+                      <input class='pop-up-fields text-field' type='hidden' value={{game.id}} name='playthrough[game_id]'>
+                      <button class="show-playthroughs update-button btn btn-primary btn-lg" data-toggle="modal" data-target="#playthroughsModal" type="submit" name="submit"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                    </fieldset>
+                  </form>
+
+                  <button type="button" class="close-new-playthrough btn btn-primary btn-lg" data-id="{{game.id}}">
+                    <i data-id="{{game.id}}" class="fa fa-times" aria-hidden="true"></i>
+                </button>
+
                 </td>
                   <td>
-                    <form class="delete-game">
-                      <fieldset>
-                        <input class='pop-up-fields text-field' type='hidden' value={{game.id}} name='game[id]'>
-                        <button class="btn btn-primary btn-lg" type="submit"><i class="fa fa-trash" aria-hidden="true"></i></button
-                      </fieldset>
-                    </form>
+
+                    <button data-id="{{game.id}}" class="delete-btn btn btn-primary btn-lg" type="submit"><i data-id="{{game.id}}" class="fa fa-trash" aria-hidden="true"></i></button>
+
                     <button class="update-game-button btn btn-primary btn-lg" data-id="{{game.id}}" data-title="{{game.title}}" data-genre="{{game.genre}}" data-platform="{{game.platform}}" data-release="{{game.release}}" data-developer="{{game.developer}}" data-publisher="{{game.publisher}}" data-playtime="{{game.playtime}}" type="button" class="update-game-button btn btn-primary btn-lg">
                       <i class="fa fa-pencil" aria-hidden="true" data-id="{{game.id}}" data-title="{{game.title}}" data-genre="{{game.genre}}" data-platform="{{game.platform}}" data-release="{{game.release}}" data-developer="{{game.developer}}" data-publisher="{{game.publisher}}" data-playtime="{{game.playtime}}"></i>
                   </button>

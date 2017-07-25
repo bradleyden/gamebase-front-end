@@ -1,7 +1,6 @@
 'use strict'
 
 const store = require('./store')
-const events = require('./events')
 const showGamesTemplate = require('./templates/game-listing.handlebars')
 const showPlaythroughsTemplate = require('./templates/playthrough-listing.handlebars')
 
@@ -48,13 +47,14 @@ const signOutSuccess = (data) => {
   $('#library tbody').empty()
   $('#library').DataTable().destroy()
   $('#library').hide()
+  $('.playthrough-body').empty()
+  $('.playthrough-content').hide()
 }
 
 const signOutFailure = (eror) => {
 }
 
 const createGameSuccess = (data) => {
-  console.log(data)
   $('#addGameModal').modal('hide')
   const showGamesHtml = showGamesTemplate({ games: data.games })
   $('#library tbody').empty()
@@ -74,20 +74,24 @@ const createPlaythroughFailure = () => {
 }
 
 const showPlaythroughsSuccess = (data) => {
+  console.log(data)
   const filteredData = data.playthroughs.filter(function (item) {
     return item.game_id == document.getElementsByClassName('playthrough-content')[0].id
   })
-  console.log(filteredData)
-  console.log(document.getElementsByClassName('playthrough-content')[0].id)
   const showPlaythroughsHtml = showPlaythroughsTemplate({ playthroughs: filteredData })
-  $('.playthrough-body').html(showPlaythroughsHtml)
+  if (filteredData.length > 0) {
+    console.log('yes playthroughs')
+    $('.playthrough-body').empty()
+    $('.playthrough-body').html(showPlaythroughsHtml)
+  } else {
+    $('.playthrough-body').html('<h3>No Playthroughs To Display</h3>')
+  }
 }
 
 const showPlaythroughsFailure = () => {
 }
 
 const loadGamesSuccess = (data) => {
-  console.log(data)
   const showGamesHtml = showGamesTemplate({ games: data.games })
   $('#library tbody').empty()
   $('#library tbody').append(showGamesHtml)
@@ -125,7 +129,7 @@ const updatePlaythroughFailure = () => {
 }
 
 const deleteGameSuccess = (data) => {
-  console.log(data)
+  $('#deleteGameConfirm').modal('hide')
   const showGamesHtml = showGamesTemplate({ games: data.games })
   $('#library tbody').empty()
   $('#library').DataTable().destroy()

@@ -22,20 +22,35 @@ const onSignIn = function (event) {
         .then(ui.loadGamesSuccess)
         .catch(ui.loadGamesFailure)
   $('.playthrough-content').show()
+  $('.new-game-btn').show()
   $('#library').show()
-  $(document).on('submit', '.delete-game', onDeleteGame)
-  $(document).on('submit', '.add-playthrough', onCreatePlaythrough)
-  $(document).on('submit', '.show-playthroughs', onShowPlaythroughs)
-  $(document).on('click', '.update-game-button', openEditGameModal)
-  $(document).on('click', '.add-playthrough-prompt', showNewPlaythroughForm)
 }
 
-const showNewPlaythroughForm = function () {
-  $('.add-playthrough').show()
-  $(document).on('click', '.close-new-playthrough', hideNewPlaythroughForm)
+const showDeleteConfirm = function (event) {
+  $('#deleteGameConfirm').modal('show')
+  $('#delete-game-id').val($(event.target).data('id'))
+}
+
+const hideDeleteGameConfirm = function () {
+  $('#deleteGameConfirm').modal('hide')
+}
+
+const showNewPlaythroughForm = function (event) {
+  hideNewPlaythroughForm()
+  const gameID = $(event.target).data('id')
+  const matchesGame = function () {
+    if ($(this).data('id') === gameID) {
+      return true
+    }
+  }
+  $('.add-playthrough-prompt').filter(matchesGame).hide()
+  $('.add-playthrough').filter(matchesGame).show()
+  $('.close-new-playthrough').filter(matchesGame).show()
 }
 
 const hideNewPlaythroughForm = function () {
+  $('.add-playthrough-prompt').show()
+  $('.close-new-playthrough').hide()
   $('.add-playthrough').hide()
 }
 
@@ -55,16 +70,16 @@ const onSignOut = function (event) {
     .catch(ui.signOutFailure)
 }
 
-const onShowGames = function (event) {
-  event.preventDefault()
-  api.getAllGames()
-     .then(ui.loadGamesSuccess)
-     .catch(ui.loadGamesFailure)
-  $(document).on('submit', '.delete-game', onDeleteGame)
-  $(document).on('submit', '.add-playthrough', onCreatePlaythrough)
-  $(document).on('submit', '.show-playthroughs', onShowPlaythroughs)
-  $('#library').show()
-}
+// const onShowGames = function (event) {
+//   event.preventDefault()
+//   api.getAllGames()
+//      .then(ui.loadGamesSuccess)
+//      .catch(ui.loadGamesFailure)
+//   $(document).on('submit', '.delete-game', onDeleteGame)
+//   $(document).on('submit', '.add-playthrough', onCreatePlaythrough)
+//   $(document).on('submit', '.show-playthroughs', onShowPlaythroughs)
+//   $('#library').show()
+// }
 
 const openEditGameModal = function (event) {
   $('#updateGameModal').modal('show')
@@ -95,8 +110,6 @@ const onShowPlaythroughs = function (event) {
   api.getPlaythroughs()
      .then(ui.showPlaythroughsSuccess)
      .catch(ui.showPlaythroughsFailure)
-  $(document).on('click', '.playthrough-update-button', onUpdatePlaythroughPrompt)
-  $(document).on('submit', '.playthrough-delete', onDeletePlaythrough)
 }
 
 const onCreateGame = function (event) {
@@ -109,10 +122,9 @@ const onCreateGame = function (event) {
 }
 
 const onCreatePlaythrough = function (event) {
-  const data = getFormFields(this)
-  console.log(data)
   event.preventDefault()
-  $('.add-playthrough').hide()
+  onShowPlaythroughs(event)
+  const data = getFormFields(this)
   api.createPlaythrough(data)
      .then(ui.createPlaythroughSuccess)
      .catch(ui.createPlaythroughFailure)
@@ -143,7 +155,6 @@ const onUpdatePlaythroughPrompt = function (event) {
   $('#update-playthrough-time').val($(event.target).data('time'))
   $('#update-playthrough-start').val($(event.target).data('start'))
   $('#update-playthrough-finish').val($(event.target).data('finish'))
-  $(document).on('submit', '#update-playthrough', onUpdatePlaythrough)
 }
 
 const onDeleteGame = function (event) {
@@ -179,10 +190,22 @@ const addHandlers = () => {
   $('#sign-in').on('submit', onSignIn)
   $('#change-pw').on('submit', onChangePassword)
   $('#sign-out').on('submit', onSignOut)
-  $('#index-games').on('submit', onShowGames)
+  // $('#index-games').on('submit', onShowGames)
   $('#show-game').on('submit', onShowGame)
   $('#create-game').on('submit', onCreateGame)
   $('#update-game').on('submit', onUpdateGame)
+  $(document).on('submit', '.add-playthrough', onCreatePlaythrough)
+  $(document).on('click', '.delete-btn', showDeleteConfirm)
+  $(document).on('submit', '.show-playthroughs', onShowPlaythroughs)
+  $(document).on('click', '.update-game-button', openEditGameModal)
+  $(document).on('click', '.add-playthrough-prompt', showNewPlaythroughForm)
+  $(document).on('submit', '#update-playthrough', onUpdatePlaythrough)
+  $(document).on('click', '.playthrough-update-button', onUpdatePlaythroughPrompt)
+  $(document).on('submit', '.playthrough-delete', onDeletePlaythrough)
+  $(document).on('click', '.close-new-playthrough', hideNewPlaythroughForm)
+  $(document).on('click', '.add-playthrough-prompt', showNewPlaythroughForm)
+  $(document).on('submit', '.delete-game', onDeleteGame)
+  $(document).on('click', '#close-delete-game', hideDeleteGameConfirm)
 }
 
 module.exports = {

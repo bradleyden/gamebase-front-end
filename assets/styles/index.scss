@@ -2,8 +2,8 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
 body {
-  width: auto;
-  background-color: #FAFAFA;
+  background-image: url('../../texture.jpg');
+  background-repeat: repeat;
 }
 
 .main-wrapper {
@@ -12,7 +12,6 @@ body {
   font-size: 18px;
   line-height: 1.6;
   margin: 15px auto;
-  max-width: 650px;
   padding: -20px 10px 100px 10px;
   text-align: center;
 }
@@ -31,7 +30,7 @@ h1 {
 }
 
 h2 {
-  color: #black;
+  color: #3D3B4C;
   font-family: 'Play';
   font-size: 36px;
 }
@@ -49,10 +48,11 @@ h3 {
 }
 
 .header {
+  z-index: 100;
   background-color: #3D3B4C;
   padding: 20px;
   height: 200px;
-  width: 100%;
+  width: auto;
 }
 
 .login-status {
@@ -61,12 +61,14 @@ h3 {
 
 .btn {
   font-family: 'Open Sans';
-  background-color: #FAFAFA;
+  background-color: #F1F1F1;
+  border: none;
   border-radius: 10px;
   color: #3D3B4C;
   font-size: 14px;
   margin: 3px 0;
   padding: 5px 9px;
+  box-shadow: 3px 3px rgba(0, 0, 0, .3);
 }
 
 .btn:hover {
@@ -80,8 +82,12 @@ h3 {
 .changePwError {
   font-family: 'Play';
   font-size: 16px;
-  color: #CDE25F;
+  color: #3D3B4C;
   font-weight: 800;
+}
+
+.greeting {
+  color: #CDE25F;
 }
 
 .page-bottom {
@@ -119,44 +125,51 @@ label {
     font-size: 16px;
   }
 
-  .page-bottom {
-    font-size: px;
-    padding: 5px;
-  }
-
   .login-status {
     padding: 10px 20px 10px 20px;
   }
 }
 
+.logged-in {
+  display: none;
+}
+
 td {
-  background-color: #EAEAEA;
+  background-color: #FFFFFF;
   padding: 10px;
 }
 
 th {
-  background: #66687F;
+  background: #3D3B4C;
   color: #EAEAEA;
 
 }
 
 table {
   box-shadow: 3px 3px 10px rgba(0, 0, 0, .4);
+  border: 4px solid #3D3B4C;
 }
 
 .dataTables_wrapper {
+  clear: both;
   float: left;
-  width: 70%;
+  width: 73%;
+  margin: 10px 0 130px 0;
+  overflow: auto;
 }
 
 .playthrough-content {
+  background-color: #FFFFFF;
+  display: none;
   position: fixed;
   width: 25%;
-  height: 69%;
-  right: 0;
-  overflow: scroll;
-  background-color: #EAEAEA;
-  padding: 5px;
+  height: 64%;
+  right: 15px;
+  overflow: auto;
+  padding: 20px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, .4);
+  border: 6px solid #3D3B4C;
+  border-radius: 20px;
 }
 
 .playthroughs-header {
@@ -164,8 +177,7 @@ table {
   font-size: 36px;
   padding: 5px;
   text-align: center;
-  color: white;
-  background: #66687F;
+  color: #3D3B4C;
 }
 
 .table-data {
@@ -176,4 +188,76 @@ table {
 
 .signup-prompt {
   color: #FAFAFA;
+}
+
+.new-game-btn {
+  padding-top: 18px;
+  display: none;
+  float: left;
+  clear: both;
+  margin: 10px 0;
+}
+
+.paginate_button {
+  margin: 5px;
+  color: #3D3B4C;
+  font-weight: bold;
+}
+
+p {
+  font-family: 'Open Sans';
+  font-size: 16px;
+}
+
+.show-playthroughs {
+  float: left;
+  margin: 2px;
+}
+
+.close-new-playthrough {
+  display: none;
+}
+
+.landing-page {
+  text-align: center;
+}
+
+.landing-page-image {
+  width: 30%;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #FFFFFF;
+  width: 5px;
+  height: 5px;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #3D3B4C;
+  width: 3px;
+  height: 3px;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-corner {
+  background-color: #3D3B4C;
+}
+
+::-webkit-scrollbar-button {
+  background-color: #3D3B4C;
+}
+
+.add-playthrough {
+  display: none;
+}
+
+.delete-regret {
+  margin: -57px 0 0 150px;
 }
