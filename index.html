@@ -33,6 +33,7 @@
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#signUpModal">
       Sign Up!
     </button><br><br>
+    <div class="sign-in-error-msg error-msg"></div>
     </div>
 
     <div class="logged-in">
@@ -57,12 +58,12 @@
       <div class="modal-body">
         <form id="sign-up">
           <fieldset>
-            <input class='pop-up-fields text-field' type='text' placeholder='Email' name='credentials[email]'> <br> <br>
-            <input class='pop-up-fields text-field' type='password' placeholder='Password' name='credentials[password]'><br> <br>
-            <input class='pop-up-fields text-field' type='password' placeholder='Re-enter Password' name='credentials[password_confirmation]'><br><br>
+            <span class="star-required">*</span>&nbsp;&nbsp;<input class='pop-up-fields text-field' type='text' placeholder='Email' name='credentials[email]'> <br> <br>
+            <span class="star-required">*</span>&nbsp;&nbsp;<input class='pop-up-fields text-field' type='password' placeholder='Password' name='credentials[password]'><br> <br>
+            <span class="star-required">*</span>&nbsp;&nbsp;<input class='pop-up-fields text-field' type='password' placeholder='Re-enter Password' name='credentials[password_confirmation]'><br><br>
             <button class="btn btn-primary btn-lg" type="submit">Sign up</button>
           </fieldset><br>
-          <div class="signUpError"></div>
+          <div class="sign-up-error-msg error-msg"></div>
         </form>
       </div>
     </div>
@@ -83,7 +84,7 @@
             <input class='pop-up-fields text-field' type='password' placeholder='New Password' name='passwords[new]'><br> <br>
             <button class="btn btn-primary btn-lg" type="submit">Change Password</button>
           </fieldset><br>
-          <div class="changePwError"></div>
+          <div class="change-pw-error-msg error-msg"></div>
         </form>
       </div>
     </div>
@@ -98,12 +99,6 @@
 
     <br>
     <div class="logged-in">
-    <!-- <form id="index-games">
-      <fieldset>
-        <button class="btn btn-primary btn-lg" type="submit">View Library</button>
-      </fieldset><br>
-      <div class="showLibraryError"></div>
-    </form> -->
 
     <button type="button" class="new-game-btn btn btn-primary btn-lg" data-toggle="modal" data-target="#addGameModal">
       <p>Add New Game</p>
@@ -168,16 +163,33 @@
         <div class="modal-body">
           <form id="create-game">
             <fieldset>
-              <p>Title:</p>
+              <p><span class="star-required">*</span>&nbsp;&nbsp; Title:</p>
               <input class='pop-up-fields text-field' type='text' placeholder='Title' name='game[title]'> <br> <br>
-              <p>Platform:</p>
+              <p><span class="star-required">*</span>&nbsp;&nbsp; Platform:</p>
               <select name='game[platform]'>
                 <option value="PC">PC</option>
                 <option value="Playstation 4">Playstation 4</option>
                 <option value="Xbox One">Xbox One</option>
                 <option value="Nintendo Switch">Nintendo Switch</option>
+                <option value="Wii U">Wii U</option>
+                <option value="3DS/2DS">3DS/2DS</option>
+                <option value="Playsation Vita">Playstation Vita</option>
+                <option value="Playstation 3">Playstation 3</option>
+                <option value="Xbox 360">Xbox 360</option>
+                <option value="Wii">Wii</option>
+                <option value="Playstation 2">Playstation 2</option>
+                <option value="Xbox">Xbox</option>
+                <option value="GameCube">GameCube</option>
+                <option value="Playstation">Plastation</option>
+                <option value="Nintendo 64">Nintendo 64</option>
+                <option value="SNES">SNES</option>
+                <option value="NES">NES</option>
+                <option value="Gameboy">Gameboy</option>
+                <option value="Gameboy Advance">Gameboy Advance</option>
+                <option value="Sega Dreamcast">Sega Dreamcast</option>
+                <option value="Other">Other</option>
               </select><br><br>
-              <p>Genre:</p>
+              <p><span class="star-required">*</span>&nbsp;&nbsp; Genre:</p>
               <input class='pop-up-fields text-field' type='text' placeholder='Genre' name='game[genre]'> <br> <br>
               <p>Release Date:</p>
               <input class='pop-up-fields text-field' type='date' placeholder='Release Date' name='game[release]'> <br> <br>
@@ -189,7 +201,7 @@
               <input class='pop-up-fields text-field' type='number' placeholder='Playtime' name='game[playtime]'> &nbsp;&nbsp; hours<br> <br>
               <button class="btn btn-primary btn-lg" type="submit">Add Game</button>
             </fieldset><br>
-            <div class="signUpError"></div>
+            <div class="add-game-error-msg error-msg"></div>
           </form>
         </div>
       </div>
@@ -207,16 +219,33 @@
             <form id="update-game">
               <fieldset>
                 <input id="update-game-id" class='pop-up-fields text-field' type='hidden' name='game[id]'>
-                <p>Title:</p>
+                <p><span class="star-required">*</span>&nbsp;&nbsp; Title:</p>
                 <input id="update-game-title" class='pop-up-fields text-field' type='text' placeholder='Title' name='game[title]'> <br> <br>
-                <p>Platform:</p>
+                <p><span class="star-required">*</span>&nbsp;&nbsp; Platform:</p>
                 <select id="update-game-platform" name='game[platform]'>
                   <option value="PC">PC</option>
                   <option value="Playstation 4">Playstation 4</option>
                   <option value="Xbox One">Xbox One</option>
                   <option value="Nintendo Switch">Nintendo Switch</option>
+                  <option value="Wii U">Wii U</option>
+                  <option value="3DS/2DS">3DS/2DS</option>
+                  <option value="Playsation Vita">Playstation Vita</option>
+                  <option value="Playstation 3">Playstation 3</option>
+                  <option value="Xbox 360">Xbox 360</option>
+                  <option value="Wii">Wii</option>
+                  <option value="Playstation 2">Playstation 2</option>
+                  <option value="Xbox">Xbox</option>
+                  <option value="GameCube">GameCube</option>
+                  <option value="Playstation">Plastation</option>
+                  <option value="Nintendo 64">Nintendo 64</option>
+                  <option value="SNES">SNES</option>
+                  <option value="NES">NES</option>
+                  <option value="Gameboy">Gameboy</option>
+                  <option value="Gameboy Advance">Gameboy Advance</option>
+                  <option value="Sega Dreamcast">Sega Dreamcast</option>
+                  <option value="Other">Other</option>
                 </select><br><br>
-                <p>Genre:</p>
+                <p><span class="star-required">*</span>&nbsp;&nbsp; Genre:</p>
                 <input id="update-game-genre" class='pop-up-fields text-field' type='text' placeholder='Genre' name='game[genre]'> <br> <br>
                 <p>Release Date:</p>
                 <input id="update-game-release" class='pop-up-fields text-field' type='date' placeholder='Release Date' name='game[release]'> <br> <br>
@@ -228,7 +257,7 @@
                 <input id="update-game-playtime" class='pop-up-fields text-field' type='number' placeholder='Playtime' name='game[playtime]'>&nbsp;&nbsp; hours<br> <br>
                 <button class="btn btn-primary btn-lg" type="submit">Submit Changes</button>
               </fieldset><br>
-              <div class="signUpError"></div>
+              <div class="update-game-error-msg error-msg"></div>
             </form>
           </div>
         </div>
@@ -271,13 +300,14 @@
                 <input id="update-playthrough-completion" class='pop-up-fields text-field' type='number' placeholder='Completion' name='playthrough[completion]'>&nbsp;&nbsp; %<br> <br>
                 <p>Play Time:</p>
                 <input id="update-playthrough-time" class='pop-up-fields text-field' type='number' placeholder='Time' name='playthrough[time]'>&nbsp;&nbsp; hours<br> <br>
-                <p>Date Started:</p>
+                <p><span class="star-required">*</span>&nbsp;&nbsp; Date Started:</p>
                 <input id="update-playthrough-start" class='pop-up-fields text-field' type='date' placeholder='Start Date' name='playthrough[date_started]'><br><br>
                 <p>Date Finished:</p>
                 <input id="update-playthrough-finish" class='pop-up-fields text-field' type='date' placeholder='End Date' name='playthrough[date_finished]'> <br> <br>
                 <button class="btn btn-primary btn-lg"type="submit" name="submit">Submit Changes</button>
               </fieldset><br>
             </form>
+            <div class="update-playthrough-error-msg error-msg"></div>
           </div>
         </div>
       </div>
@@ -288,6 +318,7 @@
       <div class="playthroughs-header">
       Playthroughs
     </div>
+    <div class="playthrough-error-msg error-msg"></div>
     <div class="playthrough-body"></div>
     </div>
 
