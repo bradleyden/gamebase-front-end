@@ -76,13 +76,11 @@ const createPlaythroughFailure = () => {
 }
 
 const showPlaythroughsSuccess = (data) => {
-  console.log(data)
   const filteredData = data.playthroughs.filter(function (item) {
     return item.game_id == document.getElementsByClassName('playthrough-content')[0].id
   })
   const showPlaythroughsHtml = showPlaythroughsTemplate({ playthroughs: filteredData })
   if (filteredData.length > 0) {
-    console.log('yes playthroughs')
     $('.playthrough-body').empty()
     $('.playthrough-body').html(showPlaythroughsHtml)
   } else {
@@ -108,14 +106,12 @@ const loadGamesFailure = () => {
 }
 
 const loadGameSuccess = (data) => {
-  console.log(data)
 }
 
 const loadGameFailure = () => {
 }
 
 const updateGameSuccess = (data) => {
-  console.log('updatedata: ' + data)
   $('#updateGameModal').modal('hide')
   loadGamesSuccess(data)
   $('.text-field').val('')
