@@ -121,6 +121,9 @@ const onUpdateGame = function (event) {
   api.updateGame(data)
      .then(ui.updateGameSuccess)
      .catch(ui.updateGameFailure)
+     .then(api.getAllGames)
+          .then(ui.loadGamesSuccess)
+          .catch(ui.loadGameFailure)
 }
 
 const onUpdatePlaythrough = function (event) {

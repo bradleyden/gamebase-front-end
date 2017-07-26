@@ -95,11 +95,10 @@ const showPlaythroughsFailure = () => {
 const loadGamesSuccess = (data) => {
   const showGamesHtml = showGamesTemplate({ games: data.games })
   $('#library tbody').empty()
-  $('#library tbody').append(showGamesHtml)
   $('#library').show()
-  $('#library').DataTable()
-  $('#index-games').hide()
   $('.add-playthrough').hide()
+  $('#library tbody').append(showGamesHtml)
+  $('#library').DataTable()
 }
 
 const loadGamesFailure = () => {
@@ -113,7 +112,10 @@ const loadGameFailure = () => {
 
 const updateGameSuccess = (data) => {
   $('#updateGameModal').modal('hide')
-  loadGamesSuccess(data)
+  const showGamesHtml = showGamesTemplate({ games: data.games })
+  $('#library tbody').empty()
+  $('#library').DataTable().destroy()
+  $('#library tbody').append(showGamesHtml)
   $('.text-field').val('')
 }
 
@@ -123,7 +125,6 @@ const updateGameFailure = () => {
 
 const updatePlaythroughSuccess = (data) => {
   $('#updatePlaythroughModal').modal('hide')
-  showPlaythroughsSuccess(data)
 }
 
 const updatePlaythroughFailure = () => {
