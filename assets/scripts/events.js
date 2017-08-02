@@ -138,6 +138,9 @@ const onUpdatePlaythrough = function (event) {
   api.updatePlaythrough(data)
      .then(ui.updatePlaythroughSuccess)
      .catch(ui.updatePlaythroughFailure)
+     .then(api.getPlaythroughs)
+        .then(ui.showPlaythroughsSuccess)
+        .catch(ui.showPlaythroughsFailure)
 }
 
 const onUpdatePlaythroughPrompt = function (event) {
