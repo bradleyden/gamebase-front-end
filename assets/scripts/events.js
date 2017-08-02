@@ -6,6 +6,9 @@ const ui = require('./ui')
 
 const onSignUp = function (event) {
   const data = getFormFields(this)
+  console.log(data)
+  $('#signin-email').val(data.credentials.email)
+  $('#signin-pw').val(data.credentials.password)
   event.preventDefault()
   api.signUp(data)
     .then(ui.signUpSuccess)
@@ -113,6 +116,9 @@ const onCreatePlaythrough = function (event) {
   api.createPlaythrough(data)
      .then(ui.createPlaythroughSuccess)
      .catch(ui.createPlaythroughFailure)
+     .then(api.getPlaythroughs)
+        .then(ui.showPlaythroughsSuccess)
+        .catch(ui.showPlaythroughsFailure)
 }
 
 const onUpdateGame = function (event) {

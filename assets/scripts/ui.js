@@ -6,8 +6,10 @@ const showPlaythroughsTemplate = require('./templates/playthrough-listing.handle
 
 const signUpSuccess = (data) => {
   $('#signUpModal').modal('hide')
-  $('.text-field').val('')
+  $('.text-field-signup').val('')
+  $('#sign-in').submit()
 }
+
 const signUpFailure = () => {
   $('.sign-up-error-msg').text('Oops! Something went wrong! Please check required fields and try again!').fadeIn('fast').delay(3000).fadeOut('slow')
 }
@@ -20,7 +22,7 @@ const signInSuccess = (data) => {
   $('#create-game').show(400)
   $('.instructions').text('Start a new game!')
   $('.error').text('')
-  $('.text-field').val('')
+  $('.text-field-signin').val('')
   $('.playthrough-content').show()
   $('.new-game-btn').show()
   $('#library').show()
@@ -32,7 +34,7 @@ const signInFailure = () => {
 
 const changePasswordSuccess = (data) => {
   $('#changePwModal').modal('hide')
-  $('.text-field').val('')
+  $('.text-field-chpw').val('')
 }
 
 const changePasswordFailure = () => {
@@ -60,7 +62,7 @@ const createGameSuccess = (data) => {
   $('#library').DataTable().destroy()
   $('#library tbody').append(showGamesHtml)
   loadGamesSuccess(data)
-  $('.text-field').val('')
+  $('.text-field-newgame').val('')
 }
 
 const createGameFailure = () => {
@@ -116,7 +118,7 @@ const updateGameSuccess = (data) => {
   $('#library tbody').empty()
   $('#library').DataTable().destroy()
   $('#library tbody').append(showGamesHtml)
-  $('.text-field').val('')
+  $('.text-field-updategame').val('')
 }
 
 const updateGameFailure = () => {
